@@ -16,4 +16,9 @@ router.post('/create-session',passport.authenticate(
 // destroy session
 router.get('/sign_out',usersController.destroySession);
 
+// making get requests to google
+router.get('/auth/google',passport.authenticate('google',{scope:['profile','email']}));
+router.get('/auth/google/callback',passport.authenticate('google',{failureRedirect:'/users/sign_in'}),usersController.createSession);
+
+
 module.exports=router;

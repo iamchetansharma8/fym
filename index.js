@@ -9,6 +9,9 @@ const db=require('./config/mongoose');
 const session=require('express-session');
 const passport = require('passport');
 const passportLocal=require('./config/passport-local-strategy');
+const passportGoogle=require('./config/passport-google-oauth2-strategy');
+// to store session cookie in db, so that everytime we restart server, all users shouldn't
+// be logged out
 const MongoStore=require('connect-mongo')(session);
 
 app.use(express.urlencoded());
