@@ -3,7 +3,7 @@ const googleStrategy=require('passport-google-oauth').OAuth2Strategy;
 // crypto is used here to generate random passwords fo accounts created through google
 const crypto=require('crypto');
 const User=require('../models/user');
-
+const signUpMailer=require('../mailers/sign-up');
 // tell passport to use a new strategy for google login
 passport.use(new googleStrategy({
     clientID:process.env.GOOGLE_CLIENT_SECRET,
@@ -32,6 +32,7 @@ passport.use(new googleStrategy({
                     if(err){
                         console.log("Error in creating user through google oauth",err);
                     }
+                    signUpMailer.newSignUp(user);
                     return done(null,user);
                 });
             }
