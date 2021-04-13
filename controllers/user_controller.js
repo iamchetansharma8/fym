@@ -50,9 +50,9 @@ module.exports.resetPasswordPage=async function(req,res){
         let cur_user_token=await ResetPassToken.findOne({
             accessToken:req.params.token
         });
-        if(!cur_user_token){
+        if(!cur_user_token||cur_user_token.isValid==false){
             console.log('error', 'Reset Password token is invalid');
-            return res.render('/');
+            return res.redirect('/');
         }
         cur_user_token = await cur_user_token.populate('user', 'name email verified').execPopulate();
         res.render('reset_pass',{
@@ -107,7 +107,6 @@ module.exports.finalReset=async function(req,res){
             console.log('error', 'Password reset token is invalid');
             return res.render('/');
         }
-        
         cur_user_token = await cur_user_token.populate('user', 'name email password').execPopulate();
         let cur_usr=cur_user_token.user;
         console.log(cur_usr);
@@ -117,6 +116,7 @@ module.exports.finalReset=async function(req,res){
         cur_usr.password=req.body.password;
         await cur_usr.save();
         cur_user_token.isValid=false;
+        cur_user_token.save();
         return res.redirect('/');
     }catch(err){
         console.log('Error in displaying reset password page',err);
