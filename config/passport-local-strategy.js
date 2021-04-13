@@ -14,6 +14,11 @@ passport.use(new LocalStrategy({
             console.log('Error in finding user in schema(passport)');
             return done(err);
         }
+        console.log('fr',user.verified);
+        if(user.verified==false){
+            console.log('Please verify your account before signing in');
+            return done(null, false);
+        }
         if (!user||user.password!=password) { 
             console.log('Invalid username|password');
             return done(null, false); 

@@ -13,6 +13,12 @@ router.get('/reset/:token',usersController.resetPasswordPage);
 // resetting password
 router.post('/reset/:token',usersController.finalReset);
 
+// verify email account page
+router.get('/verify_email/:token',usersController.verifyEmailPage);
+
+// verifying email account
+router.post('/verify_email/:token',usersController.finalVerification);
+
 router.post('/create',usersController.create);
 
 // reset password request

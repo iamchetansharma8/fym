@@ -1,0 +1,17 @@
+<div>
+    <p>Hi <%=user.name%>, You are receiving this 
+        because you (or someone else) has requested to sign up on fyn from
+        your email account.</p>
+    <p>
+        Please click on the following 
+        link, or paste this into your browser to complete the process of 
+        verification of your account. <br> 
+        Please ignore if you have'nt requested to sign up :
+    </p>
+    <p>token:<%=token%></p>
+    <p>
+        <a href="http://localhost:8000/users/verify_email/<%=token%>">click here</a>
+    </p>
+    <p>Thanks!🙏</p> 
+    <p>❤️fym</p>
+</div>

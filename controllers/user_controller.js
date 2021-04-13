@@ -1,11 +1,14 @@
 const user  = require('../config/mongoose');
 const User=require('../models/user');
 const ResetPassToken=require('../models/resetPassToken');
+const EnableAccessToken=require('../models/enableAccToken');
 const fs=require('fs');
 const path=require('path');
 const signUpMailer=require('../mailers/sign-up');
+const verifyMailer=require('../mailers/verify_acc');
 const forgotPassMailer=require('../mailers/forgot-pass');
 const crypto=require('crypto');
+const { verifyAccount } = require('../mailers/verify_acc');
 
 // rendering user profile page
 module.exports.profile=function(req,res){
@@ -43,17 +46,44 @@ module.exports.resetPasswordPage=async function(req,res){
         if(req.isAuthenticated()){
             return res.redirect('/users/profile/');
         }
-        console.log('readme',req.params.token);
+        // console.log('readme',req.params.token);
         let cur_user_token=await ResetPassToken.findOne({
             accessToken:req.params.token
         });
         if(!cur_user_token){
-            console.log('error', 'Password reset token is invalid');
+            console.log('error', 'Reset Password token is invalid');
             return res.render('/');
         }
-        cur_user_token = await cur_user_token.populate('user', 'name email').execPopulate();
+        cur_user_token = await cur_user_token.populate('user', 'name email verified').execPopulate();
         res.render('reset_pass',{
             title:"fyn | Reset Password",
+            user_of_token:cur_user_token.user,
+            token:req.params.token
+        });
+    }catch(err){
+        console.log('Error in displaying verify email id page',err);
+        res.redirect('/');
+    }
+}
+
+// rendering verify email page
+module.exports.verifyEmailPage=async function(req,res){
+    try{
+        // if user is already signed in no need to proceed further
+        if(req.isAuthenticated()){
+            return res.redirect('/users/profile/');
+        }
+        // console.log('readme',req.params.token);
+        let cur_user_token=await EnableAccessToken.findOne({
+            accessToken:req.params.token
+        });
+        if(!cur_user_token){
+            console.log('error', 'Verify email token is invalid');
+            return res.render('/');
+        }
+        cur_user_token = await cur_user_token.populate('user', 'name email verified').execPopulate();
+        res.render('verify_email_page',{
+            title:"fyn | Verify Account",
             user_of_token:cur_user_token.user,
             token:req.params.token
         });
@@ -90,6 +120,32 @@ module.exports.finalReset=async function(req,res){
         return res.redirect('/');
     }catch(err){
         console.log('Error in displaying reset password page',err);
+        res.redirect('/');
+    }
+}
+
+// performing the final verification action 
+module.exports.finalVerification=async function(req,res){
+    try{
+        // if user is already signed in no need to proceed further
+        if(req.isAuthenticated()){
+            return res.redirect('/users/profile/');
+        }
+        let cur_user_token=await EnableAccessToken.findOne({
+            accessToken:req.params.token
+        });
+        if(!cur_user_token){
+            console.log('error', 'Email Verification token is invalid');
+            return res.render('/');
+        }
+        cur_user_token = await cur_user_token.populate('user', 'name email verified').execPopulate();
+        let cur_usr=cur_user_token.user;
+        cur_usr.verified=true;
+        await cur_usr.save();
+        cur_user_token.isValid=false;
+        return res.redirect('/');
+    }catch(err){
+        console.log('Error in verifying user email',err);
         res.redirect('/');
     }
 }
@@ -136,34 +192,37 @@ module.exports.reset_pass=async function(req,res){
 }
 
 // creating user sign up
-module.exports.create=function(req,res){
-    if(req.body.password!=req.body.confirm_password){
-        return res.redirect('back');
-    }
-    User.findOne({email:req.body.email},function(err,user){
-        if(err){
-            console.log('Error in finding user in sign up');
-            return;
+module.exports.create=async function(req,res){
+    try{
+        if(req.body.password!=req.body.confirm_password){
+            return res.redirect('back');
         }
+        let user=await User.findOne({email:req.body.email});
         if(!user){
-            User.create(req.body,function(err,user){
-                if(err){
-                    console.log('Error in creating user during sign up');
-                    return;
-                }
-                console.log('11',user);
-                signUpMailer.newSignUp(user);
-                // here we're returning to sign_in in next line when everything is correct
-                // but we need to verify whether email entered by user is correct or not
-                // for that we in future need to send an email with a link or otp to
-                // provided email and redirect to some page according to that
-                return res.redirect('/users/sign_in');
-            })
+            user=await User.create(req.body);
+            user.verified=false;
+            signUpMailer.newSignUp(user);
+            let token=crypto.randomBytes(20).toString('hex')
+                let enableAccToken=await EnableAccessToken.create({
+                     user:user,
+                     accessToken:token,
+                     isVerified:false
+            });
+            enableAccToken = await enableAccToken.populate('user', 'name email verified').execPopulate();
+            verifyMailer.verifyAccount(token,user);
+            console.log('verification mail sent');
+            return res.render('verify_email_info',{
+                title:"fyn | Verify"
+            });
         }
         else{
             return res.redirect('back');
         }
-    });
+    }
+    catch(err){
+        console.log('Error in sign up (create)',err);
+        res.redirect('/');
+    }
 }
 
 // sign in and create a session
