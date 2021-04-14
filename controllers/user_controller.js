@@ -51,6 +51,7 @@ module.exports.resetPasswordPage=async function(req,res){
             accessToken:req.params.token
         });
         if(!cur_user_token||cur_user_token.isValid==false){
+            req.flash('warning','This link to reset password is invalid or is expired');
             console.log('error', 'Reset Password token is invalid');
             return res.redirect('/');
         }
@@ -79,7 +80,8 @@ module.exports.verifyEmailPage=async function(req,res){
         });
         if(!cur_user_token){
             console.log('error', 'Verify email token is invalid');
-            return res.render('/');
+            req.flash('error','Verify email token is invalid');
+            return res.redirect('/');
         }
         cur_user_token = await cur_user_token.populate('user', 'name email verified').execPopulate();
         res.render('verify_email_page',{
@@ -89,7 +91,7 @@ module.exports.verifyEmailPage=async function(req,res){
         });
     }catch(err){
         console.log('Error in displaying reset password page',err);
-        res.redirect('/');
+        return res.redirect('/');
     }
 }
 
@@ -111,12 +113,14 @@ module.exports.finalReset=async function(req,res){
         let cur_usr=cur_user_token.user;
         console.log(cur_usr);
         if(req.body.password!=req.body.confirm_password||cur_user_token.isValid==false){
-            return res.render('back');
+            req.flash('error','Password and Confirm password fields mismatched');
+            return res.redirect('back');
         }
         cur_usr.password=req.body.password;
         await cur_usr.save();
         cur_user_token.isValid=false;
         cur_user_token.save();
+        req.flash('success','Password changed successfully!!');
         return res.redirect('/');
     }catch(err){
         console.log('Error in displaying reset password page',err);
@@ -135,6 +139,7 @@ module.exports.finalVerification=async function(req,res){
             accessToken:req.params.token
         });
         if(!cur_user_token){
+            req.flash('error','Email Verification token is invalid');
             console.log('error', 'Email Verification token is invalid');
             return res.render('/');
         }
@@ -143,7 +148,8 @@ module.exports.finalVerification=async function(req,res){
         cur_usr.verified=true;
         await cur_usr.save();
         cur_user_token.isValid=false;
-        return res.redirect('/');
+        req.flash('success','Email Verification completed successfully, login to continue');
+        return res.redirect('/users/sign_in');
     }catch(err){
         console.log('Error in verifying user email',err);
         res.redirect('/');
@@ -181,11 +187,13 @@ module.exports.reset_pass=async function(req,res){
             });
             resetPassToken = await resetPassToken.populate('user', 'name email').execPopulate();
             forgotPassMailer.forgotPass(token,cur_user);
+            req.flash('success','Check your email to reset password');
             console.log('reset mail sent');
             return res.redirect('/');
         }
         return res.redirect('/');
     }catch(err){
+        req.flash('error','Error in resetting password');
         console.log('Error in resetting password',err);
         res.redirect('/');
     }
@@ -195,6 +203,7 @@ module.exports.reset_pass=async function(req,res){
 module.exports.create=async function(req,res){
     try{
         if(req.body.password!=req.body.confirm_password){
+            req.flash('warning','Password and Confirm Password fields mismatched');
             return res.redirect('back');
         }
         let user=await User.findOne({email:req.body.email});
@@ -210,6 +219,7 @@ module.exports.create=async function(req,res){
             });
             enableAccToken = await enableAccToken.populate('user', 'name email verified').execPopulate();
             verifyMailer.verifyAccount(token,user);
+            req.flash('success','Verification mail sent, check your email and verify your account');
             console.log('verification mail sent');
             return res.render('verify_email_info',{
                 title:"fyn | Verify"
@@ -227,11 +237,13 @@ module.exports.create=async function(req,res){
 
 // sign in and create a session
 module.exports.createSession=function(req,res){
+    req.flash('success','Logged in successfully');
     return res.redirect('/');
 }
 // sign out and destroy session
 module.exports.destroySession=function(req,res){
     // logout function is given to req by passport.js
+    req.flash('success','Logged out successfully');
     req.logout();
     return res.redirect('/');
 }

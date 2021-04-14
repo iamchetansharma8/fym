@@ -4,6 +4,12 @@ const app=express();
 const port=8000;
 const expressLayouts=require('express-ejs-layouts');
 const db=require('./config/mongoose');
+
+// to show flash messages
+const flash=require('connect-flash');
+// flash messages middleware
+const customMWare=require('./config/middleware');
+
 require('dotenv').config();
 // used for session cookie
 const session=require('express-session');
@@ -51,6 +57,10 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(passport.setAuthenticatedUser);
+
+// putting flash after session, as it uses session cookies
+app.use(flash());
+app.use(customMWare.setFlash);
 
 app.use('/',require('./routes/index'));
 app.listen(port,function(err){
