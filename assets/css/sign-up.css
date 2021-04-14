@@ -1,0 +1,84 @@
+#sign-up{
+    height: 88vh;
+    display: flex;
+}
+.sign-up-img{
+    width: 40vw;
+    height: 88vh;
+}
+.sign-up-img img{
+    width: 100%;
+    height: 100%;
+}
+.sign-up-main{
+    width: 60vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.sign-up-main h1{
+    font-size: 2rem;
+    font-family: sans-serif;
+}
+form{
+    display: flex;
+    flex-direction: column;
+}
+.google-btn{
+    background-color: #4285f4;
+    border: none;
+    padding: .9rem;
+    font-size: 1.1rem;
+    font-family: sans-serif;
+}
+.google-btn:hover{
+    background-color: black;
+    cursor: pointer;
+}
+.google-btn i{
+    margin-right: .9rem;
+    color: white;
+}
+.google-btn a{
+    color: white;
+    text-decoration: none;
+}
+.sign-up-inputs{
+    display: flex;
+    margin-bottom: 1vh;
+    margin-top: 1vh;
+}
+.sign-up-inputs label{
+    height: 100%;
+    width: 17vw;
+    font-size: 1.3rem;
+    font-family: sans-serif;
+}
+.sign-up-inputs input{
+    font-size: 1.2rem;
+    font-family: sans-serif;
+    border: 1px solid transparent;
+    background-color: #fdfafa;
+    width: 20vw;
+}
+#create-acc-btn{
+    margin-top: 3vh;
+    background-color: #ea4c89;
+    border: none;
+    padding: .7rem;
+}
+#create-acc-btn:hover{
+    background-color: black;
+    cursor: pointer;
+}
+#create-acc-btn input{
+    background-color: inherit;
+    color: white;
+    font-size: 1.2rem;
+    font-family: sans-serif;
+    border: none;
+}
+#create-acc-btn input:hover{
+    cursor: pointer;
+}

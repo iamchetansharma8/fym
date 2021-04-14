@@ -1,11 +1,33 @@
-<h1>Sign UP</h1>
+<section id="sign-up">
+    <section class="sign-up-img">
+        <img src="/images/sign-up.png" alt="signup-img">
+    </section>
+    <section class="sign-up-main">
+        <h1>Sign up to fym</h1>
+        <p>
+            <button class="google-btn"><i class="fab fa-google"></i><a href="/users/auth/google">Google Sign In | Sign Up</a></button>
+        </p>
+        <br>
+        <span>OR</span>
+        <br>
 <form action="/users/create" method="POST">
-    <input type="text" name="name" placeholder="Your name" required>
-    <input type="email" name="email" placeholder="Your email" required>
-    <input type="password" name="password" placeholder="Password" required>
-    <input type="password" name="confirm_password" placeholder="Confirm Password" required>
-    <input type="submit" value="Sign Up">
+    <div class="sign-up-inputs">
+        <label for="name">Name</label>
+        <input type="text" name="name" placeholder="Your name" required>
+    </div>
+    <div class="sign-up-inputs">
+        <label for="email">Email</label>
+        <input type="email" name="email" placeholder="Your email" required>
+    </div>
+    <div class="sign-up-inputs">
+        <label for="password">Password</label>
+        <input type="password" name="password" placeholder="Password" required>
+    </div>
+    <div class="sign-up-inputs">
+        <label for="confirm_password">Confirm Password</label>
+        <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+    </div>
+    <button id="create-acc-btn"><input type="submit" value="Create Account"></button>
 </form>
-<p>
-    <a href="/users/auth/google">Google Sign In/Sign Up</a>
-</p>
+    </section>
+</section>
