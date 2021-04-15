@@ -25,7 +25,7 @@
                 text: '<%=flash.success%>',
                 type:'success',
                 layout:'topCenter',
-                timeout:1500
+                timeout:2600
             }).show();
         <%}%>
         <% if(flash.error && flash.error.length>0){ %>
@@ -34,7 +34,7 @@
                 text: '<%=flash.error%>',
                 type:'error',
                 layout:'topCenter',
-                timeout:1500
+                timeout:2600
             }).show();
         <%}%>
         <% if(flash.warning && flash.warning.length>0){ %>
@@ -43,7 +43,7 @@
                 text: '<%=flash.warning%>',
                 type:'warning',
                 layout:'topCenter',
-                timeout:1500
+                timeout:2600
             }).show();
         <%}%>
     </script>

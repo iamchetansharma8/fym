@@ -208,6 +208,10 @@ module.exports.create=async function(req,res){
             return res.redirect('back');
         }
         let user=await User.findOne({email:req.body.email});
+        if(user){
+            req.flash('warning','The email address you entered is already registered with us, sign in instead');
+            return res.redirect('/users/sign_in');
+        }
         if(!user){
             user=await User.create(req.body);
             user.verified=false;
