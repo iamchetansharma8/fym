@@ -191,7 +191,8 @@ module.exports.reset_pass=async function(req,res){
             console.log('reset mail sent');
             return res.redirect('/');
         }
-        return res.redirect('/');
+        req.flash('warning','The email id you entered is not signed in with us');
+        return res.redirect('/users/forgot_password');
     }catch(err){
         req.flash('error','Error in resetting password');
         console.log('Error in resetting password',err);

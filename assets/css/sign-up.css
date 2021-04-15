@@ -1,5 +1,5 @@
-#sign-up{
-    height: 88vh;
+.sign-up{
+    height: 93vh;
     display: flex;
 }
 .sign-up-img{
@@ -62,23 +62,39 @@ form{
     background-color: #fdfafa;
     width: 20vw;
 }
-#create-acc-btn{
+.create-acc-btn{
     margin-top: 3vh;
     background-color: #ea4c89;
     border: none;
     padding: .7rem;
 }
-#create-acc-btn:hover{
+.create-acc-btn:hover{
     background-color: black;
     cursor: pointer;
 }
-#create-acc-btn input{
+.create-acc-btn input{
     background-color: inherit;
     color: white;
     font-size: 1.2rem;
     font-family: sans-serif;
     border: none;
 }
-#create-acc-btn input:hover{
+.create-acc-btn input:hover{
     cursor: pointer;
+}
+@media(max-width: 1000px){
+    .sign-up-img{
+        width: 0vw;
+    }
+    .sign-up-main{
+        width: 100vw;
+    }
+    .sign-up-inputs input{
+        width: 30vw;
+        font-size: 1.5rem;
+    }
+    .sign-up-inputs label{
+        width: 25vw;
+        font-size: 1.5rem;
+    }
 }

@@ -1,11 +1,25 @@
-<section>
-    <h1>Sign In</h1>
-<form action="/users/create-session" method="POST">
-    <input type="email" name="email" id="" placeholder="Enter your email" required>
-    <input type="password" name="password" id="" placeholder="password" required>
-    <input type="submit" value="Sign In">
-</form>
-<p>
-    <a href="/users/auth/google">Google Sign In/Sign Up</a>
-</p>
+<section class="sign-up">
+    <section class="sign-up-img">
+        <img src="/images/sign-up2.jpg" alt="signup-img">
+    </section>
+    <section class="sign-up-main">
+        <h1>Sign in to fym</h1>
+    <p>
+        <button class="google-btn"><i class="fab fa-google"></i><a href="/users/auth/google">Google Sign In | Sign Up</a></button>
+    </p>
+    <br>
+        <span>OR</span>
+    <br>
+    <form action="/users/create-session" method="POST">
+        <div class="sign-up-inputs">
+            <label for="email">Email Id</label>
+            <input type="email" name="email" id="" placeholder="Enter your email" required>
+        </div>
+        <div class="sign-up-inputs">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="" placeholder="password" required>
+        </div>
+        <button class="create-acc-btn"><input type="submit" value="Sign In"></button>
+    </form>
+    </section>
 </section>
