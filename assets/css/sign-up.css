@@ -18,7 +18,7 @@
     align-items: center;
 }
 .sign-up-main h1{
-    font-size: 2rem;
+    font-size: 2.2rem;
     font-family: sans-serif;
 }
 form{
@@ -83,6 +83,9 @@ form{
     cursor: pointer;
 }
 @media(max-width: 1000px){
+    .sign-up-main h1{
+        font-size: 2.8rem;
+    }
     .sign-up-img{
         width: 0vw;
     }

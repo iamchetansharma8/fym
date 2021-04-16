@@ -4,6 +4,6 @@ h3{
 }
 footer{
     margin: 0;
-    /* position: fixed; */
+    position: relative;
     bottom: 0;
 }
