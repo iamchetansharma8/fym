@@ -1,0 +1,13 @@
+<div>
+    <ul>
+        <% for(post of posts){%>
+            <li>
+                <h1><%=post.title%></h1>
+                <br>
+                <p>Posted By : <%=post.user.name%> &nbsp &nbsp &nbsp &nbsp Published On : <%=post.createdAt.toLocaleDateString()%></p>
+                <p><%=post.description%></p>
+                <button><a href="/post/read_full/<%=post.id%>">Read Complete Post</a></button>
+            </li>
+        <%}%>
+    </ul>
+</div>

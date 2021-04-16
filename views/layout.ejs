@@ -46,5 +46,14 @@
                 timeout:2600
             }).show();
         <%}%>
+        <% if(flash.alert && flash.alert.length>0){ %>
+            new Noty({
+                theme:'sunset',
+                text: '<%=flash.alert%>',
+                type:'alert',
+                layout:'topCenter',
+                timeout:2600
+            }).show();
+        <%}%>
     </script>
 </body>

@@ -58,6 +58,7 @@ passport.checkAuthentication=function(req,res,next){
         return next();
     }
     // if user in not signed in
+    req.flash('error','You need to sign in first😊');
     return res.redirect('/users/sign_in');
 }
 passport.setAuthenticatedUser=function(req,res,next){
