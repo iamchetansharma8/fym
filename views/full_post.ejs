@@ -1,5 +1,45 @@
-<h1><%=post.title%></h1>
-<br>
-<p>Posted By : <%=post.user.name%> &nbsp &nbsp &nbsp &nbsp Published On : <%=post.createdAt.toLocaleDateString()%></p>
-<p><%=post.description%></p>
-<p><%-post.sanitizedHtml%></p>
+<div class="post-container">
+    <div class="post-main-head">
+        <div id="post-heading">
+            <h1><%=cur_post.title%></h1>
+        </div>
+        <div id="post-cred">
+            <div>
+                Posted By : <%=cur_post.user.name%>
+            </div>
+            <div>
+                Published On : <%=cur_post.createdAt.toLocaleDateString()%>
+            </div>
+        </div>
+    </div>
+    <div class="post-main-desc">
+        <p><%=cur_post.description%></p>
+    </div>
+    <div class="post-main-body">
+        <p><%-cur_post.sanitizedHtml%></p>
+    </div>
+</div>
+
+<div class="post-comments">
+    <div>
+        <form action="/comment/create" method="POST">
+            <textarea name="content" id="" cols="80" rows="4" placeholder="Add you comment here...." required></textarea>
+            <!-- <input type="textarea" name="content" class="comment-text" placeholder="Add you comment here...." required> -->
+            <input type="hidden" name="post" value="<%=cur_post._id%>">
+            <input type="submit" class="create-acc-btn" value="Add Comment">
+        </form>
+    </div>
+        <div id="post-comments-list">
+            <ul id="post-comments-<%=cur_post._id%>">
+                <% for(comment of cur_post.comments){%>
+                    <li>
+                        <p>
+                            <%=comment.content%>
+                            <br>
+                            <%=comment.user.name%>
+                        </p>
+                    </li>
+                <%}%>
+            </ul>
+        </div>
+</div>

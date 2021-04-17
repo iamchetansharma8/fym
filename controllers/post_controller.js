@@ -53,10 +53,19 @@ module.exports.fullPost=function(req,res){
         req.flash('alert','Sign in to see the complete article');
         return res.redirect('/post/all_posts');
     }
-    Post.findById(req.params.post_id).populate('user','name').exec(function(err,post){
-        return res.render('full_post',{
-            title:"fym | "+post.title,
-            post:post,
+    Post.findById(req.params.post_id)
+    .populate('user')
+    .populate({
+        path:'comments',
+        populate:{
+            path:'user'
+        }
+    })
+    .exec(function(err,post){
+        console.log(post);
+        res.render('full_post',{
+            title:"fym | " +post.title,
+            cur_post:post
         });
     })
 }

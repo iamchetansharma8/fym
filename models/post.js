@@ -24,7 +24,13 @@ const postSchema=new mongoose.Schema({
     sanitizedHtml:{
         type:String,
         required:true
-    }
+    },
+    comments:[
+        {
+            type:mongoose.Schema.ObjectId,
+            ref:'Comment'
+        }
+    ]
 },{
     timestamps:true
 });
