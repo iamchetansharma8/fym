@@ -259,8 +259,40 @@ module.exports.destroySession=function(req,res){
     return res.redirect('/');
 }
 
-module.exports.update=function(req,res){
+module.exports.update=async function(req,res){
     if(req.user.id==req.params.id){
+        try{
+            let user=await User.findById(req.params.id);
+            User.uploadedAvatar(req,res,function(err){
+                if(err){
+                    console.log("Multer error:",err);
+                }
+                user.name=req.body.name;
+                if(req.file){
+                    console.log('kk',__dirname,user.avatar);
+                    if(fs.existsSync(path.join(__dirname,'..',user.avatar))){
+                        fs.unlinkSync(path.join(__dirname,'..',user.avatar));
+                    }
+                    // saving the path of the uploaded file into the avatar field of user
+                    user.avatar=User.avatarPath + '/' + req.file.filename;
+                }
+                user.save();
+                return res.redirect('back');
+            });
+        }catch(err){
+            console.log('Error in updating',err);
+            req.flash('Error in updating',err);
+            return res.redirect('back');
+        }
+    }
+    else{
+        req.flash('error','Unauthorized');
+        return res.status(401).send('Unauthorised');
+    }
+
+
+
+    /*if(req.user.id==req.params.id){
         User.findById(req.params.id,function(err,user){
             if(err){
                 console.log('Error in finding user');
@@ -273,5 +305,5 @@ module.exports.update=function(req,res){
     }
     else{
         return res.status(401).send('Unauthorised');
-    }
+    }*/
 }
