@@ -12,4 +12,7 @@ router.get('/all_posts',postController.showPosts);
 
 router.get('/read_full/:post_id',postController.fullPost);
 
+// deleting a post
+router.get('/destroy/:id',passport.checkAuthentication,postController.destroy);
+
 module.exports=router;

@@ -10,6 +10,11 @@
             <div>
                 Published On : <%=cur_post.createdAt.toLocaleDateString()%>
             </div>
+            <% if(locals.user.id==cur_post.user.id){%>
+                <div>
+                    <button><a href="/post/destroy/<%=cur_post.id%>">Delete Post</a></button>
+                </div>
+            <%}%>
         </div>
     </div>
     <div class="post-main-desc">
@@ -33,6 +38,11 @@
             <ul id="post-comments-<%=cur_post._id%>">
                 <% for(comment of cur_post.comments){%>
                     <li>
+                        <% if(locals.user.id==comment.user.id){%>
+                            <div>
+                                <button><a href="/comment/destroy/<%=comment.id%>">Delete Comment</a></button>
+                            </div>
+                        <%}%>
                         <p>
                             <%=comment.content%>
                             <br>

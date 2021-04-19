@@ -1,4 +1,5 @@
 const Post=require('../models/post');
+const Comment=require('../models/comment');
 
 // create new post page
 module.exports.createPage=function(req,res){
@@ -67,5 +68,22 @@ module.exports.fullPost=function(req,res){
             title:"fym | " +post.title,
             cur_post:post
         });
+    })
+}
+
+module.exports.destroy=function(req,res){
+    Post.findById(req.params.id,function(err,post){
+        // .id is the string version of object id
+        if(post.user==req.user.id){
+            post.remove();
+            Comment.deleteMany({post:req.params.id},function(err){
+                if(err){
+                    // notif
+                    res.redirect('/post/all_posts');
+                }
+                // not
+                res.redirect('/post/all_posts');
+            });
+        }
     })
 }
