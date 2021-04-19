@@ -1,8 +1,10 @@
 const express=require('express');
 const router=express.Router();
 const passport=require('passport');
+const { pass } = require('../config/mongoose');
 const usersController=require('../controllers/user_controller');
-router.get('/profile',passport.checkAuthentication,usersController.profile);
+router.get('/profile/:id',passport.checkAuthentication,usersController.profile);
+router.post('/update/:id',passport.checkAuthentication,usersController.update);
 router.get('/sign_up',usersController.signUp);
 router.get('/sign_in',usersController.signIn);
 router.get('/forgot_password',usersController.forgotPass);
@@ -36,6 +38,7 @@ router.get('/sign_out',usersController.destroySession);
 // making get requests to google
 router.get('/auth/google',passport.authenticate('google',{scope:['profile','email']}));
 router.get('/auth/google/callback',passport.authenticate('google',{failureRedirect:'/users/sign_in'}),usersController.createSession);
+
 
 
 module.exports=router;

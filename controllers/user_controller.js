@@ -9,12 +9,18 @@ const verifyMailer=require('../mailers/verify_acc');
 const forgotPassMailer=require('../mailers/forgot-pass');
 const crypto=require('crypto');
 const { verifyAccount } = require('../mailers/verify_acc');
+const { model } = require('mongoose');
 
 // rendering user profile page
 module.exports.profile=function(req,res){
-    return res.render('user_profile',{
-        title:"Users's profile"
-    });
+    console.log(req.params.id);
+    User.findById(req.params.id,function(err,user){
+        console.log('9');
+        return res.render('user_profile',{
+            title:"Users's profile",
+            profile_user:user
+        });
+    })
 }
 
 // rendering sign up page
@@ -251,4 +257,21 @@ module.exports.destroySession=function(req,res){
     req.flash('success','Logged out successfully');
     req.logout();
     return res.redirect('/');
+}
+
+module.exports.update=function(req,res){
+    if(req.user.id==req.params.id){
+        User.findById(req.params.id,function(err,user){
+            if(err){
+                console.log('Error in finding user');
+                return res.redirect('/');
+            }
+            user.name=req.body.name;
+            user.save();
+            return res.redirect('back');
+        });
+    }
+    else{
+        return res.status(401).send('Unauthorised');
+    }
 }
