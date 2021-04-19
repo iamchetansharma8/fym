@@ -1,0 +1,27 @@
+<%if(user.id==cur_post.user){%> 
+<div id="new-post-container">
+    <div id="new-post-head">
+        <h1>Edit post</h1>
+    </div>
+    <div id="new-post-content">
+        <form action="/post/edit/<%=cur_post.id%>" method="POST">
+            <div id="new-post-title">
+                <label for="title">Title</label>
+                <br>
+                <input type="text" name="title" id="" value="<%=cur_post.title%>" placeholder="Enter title of your post" required>
+            </div>
+            <div id="new-post-desc">
+                <label for="description">Description</label>
+                <br>
+                <textarea required name="description" value="<%=cur_post.description%>" id="" placeholder="Enter description for your post"><%=cur_post.description%></textarea>
+            </div>
+            <div id="new-post-markdown">
+                <label for="markdown">Markdown</label>
+                <br>
+                <textarea required name="markdown" value="<%=cur_post.markdown%>" id="markdown" placeholder="Type and post (Markdown Supported)"><%=cur_post.markdown%></textarea>
+            </div>
+            <div id="new-post-btn"><button type="submit">Update</button></div>
+        </form>
+    </div>
+</div>
+<%}%>

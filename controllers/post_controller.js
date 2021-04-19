@@ -87,3 +87,30 @@ module.exports.destroy=function(req,res){
         }
     })
 }
+
+// editing the post
+// create new post page
+module.exports.editPage=function(req,res){
+    Post.findById(req.params.id,function(err,post){
+        return res.render('edit_post',{
+            title:"fyn | Edit Post",
+            cur_post:post
+        });
+    });
+}
+
+// editing post
+module.exports.edit=function(req,res){
+    Post.findById(req.params.id,function(err,post){
+        if(post.user==req.user.id){
+            post.title=req.body.title;
+            post.description=req.body.description;
+            post.markdown=req.body.markdown;
+            post.save();
+            return res.redirect('/post/read_full/'+post.id);
+        }
+        else{
+            return res.status(401).send('Unauthorised');
+        }
+    })
+}

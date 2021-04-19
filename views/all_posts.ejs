@@ -7,8 +7,9 @@
                 <p>Posted By : <%=post.user.name%> &nbsp &nbsp &nbsp &nbsp Published On : <%=post.createdAt.toLocaleDateString()%></p>
                 <p><%=post.description%></p>
                 <button><a href="/post/read_full/<%=post.id%>">Read Complete Post</a></button>
-                <%if(locals.user.id==post.user.id){%>
+                <%if(locals.user&&locals.user.id==post.user.id){%>
                     <button><a href="/post/destroy/<%=post.id%>">Delete Post</a></button>
+                    <button><a href="/post/edit/<%=post.id%>">Edit Post</a></button>
                 <%}%>
             </li>
         <%}%>

@@ -15,4 +15,10 @@ router.get('/read_full/:post_id',postController.fullPost);
 // deleting a post
 router.get('/destroy/:id',passport.checkAuthentication,postController.destroy);
 
+// going to edit post page
+router.get('/edit/:id',passport.checkAuthentication,postController.editPage);
+
+// editing post
+router.post('/edit/:id',passport.checkAuthentication,postController.edit);
+
 module.exports=router;
