@@ -12,15 +12,20 @@ const { verifyAccount } = require('../mailers/verify_acc');
 const { model } = require('mongoose');
 
 // rendering user profile page
-module.exports.profile=function(req,res){
+module.exports.profile=async function(req,res){
     console.log(req.params.id);
-    User.findById(req.params.id,function(err,user){
-        console.log('9');
-        return res.render('user_profile',{
-            title:"Users's profile",
-            profile_user:user
-        });
-    })
+    // let user=await User.findById(req.params.id).populate('connections')
+    let user=await User.findById(req.params.id)
+    .populate({
+        path:'connections',
+        populate:{
+            path:'follower following'
+        }
+    });
+    return res.render('user_profile',{
+        title:"Users's profile",
+        profile_user:user
+    });
 }
 
 // rendering sign up page

@@ -2,6 +2,9 @@
 <p>
     <img src="<%=profile_user.avatar%>" alt="<%=profile_user.name%>" width="100">
 </p>
+<p>
+    <%=profile_user.nfollowers%> followers
+</p>
 <%if(user.id==profile_user.id){%>
     <form action="/users/update/<%=profile_user.id%>" enctype="multipart/form-data" method="POST">
         <input type="text" name="name" placeholder="Your name" value="<%=profile_user.name%>" required>
@@ -12,4 +15,38 @@
 <%}else{%>
     <p><%=profile_user.name%></p>
     <p><%=profile_user.email%></p>
+    <form action="/manage-connection/<%=profile_user.id%>" method="POST">
+        <%let allconn=false%>
+        <%for(connection of profile_user.connections){%>
+            <%if(connection.following.id==profile_user.id){%>
+                <%allconn=true%>
+            <%}%>
+        <%}%>
+        <%if(allconn){%>
+            <button type="submit">Unfollow</button>
+        <%}else{%>
+            <button type="submit">Follow</button>
+        <%}%>
+    </form>
 <%}%>
+<p>
+    All followers
+    <ul>
+        <%for(connection of profile_user.connections){%>
+            <%if(connection.following.id==profile_user.id){%>
+                <li><a href="/users/profile/<%=connection.follower.id%>"><%=connection.follower.name%></a></li>
+            <%}%>
+        <%}%>
+    </ul>
+</p>
+<p>
+    Following
+    <ul>
+        <%for(connection of profile_user.connections){%>
+            <%if(connection.follower.id==profile_user.id){%>
+                <li><a href="/users/profile/<%=connection.following.id%>"><%=connection.following.name%></a></li>
+            <%}%>
+        <%}%>
+    </ul>
+</p>
+<!-- connection.follower==profile_user.id|| -->

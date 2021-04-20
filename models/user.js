@@ -24,6 +24,14 @@ const userSchema=new mongoose.Schema({
     avatar:{
         type:String,
         default:'hh'
+    },
+    connections:[{
+        type: mongoose.Schema.ObjectId,
+        ref:'Connection'
+    }],
+    nfollowers:{
+        type:Number,
+        default:0
     }
 },
 {
