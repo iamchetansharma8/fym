@@ -18,6 +18,18 @@
                     <button><a href="/post/edit/<%=cur_post.id%>">Edit Post</a></button>
                 </div>
             <%}%>
+            <div>
+                <% if(locals.user){%>
+                    <form action="/likes/toggle/?id=<%=cur_post._id%>&type=Post" method="POST">
+                        <button type="submit"><%=cur_post.likes.length%>Likes</button>
+                    </form>
+                    <!-- <a class="toggle-like-button" href="/likes/toggle/?id=<%=cur_post._id%>&type=Post"> -->
+                        <!-- <%=cur_post.likes.length%>Likes -->
+                    <!-- </a> -->
+                <%}else{%>
+                    <%=cur_post.likes.length%>Likes
+                <%}%>
+            </div>
         </div>
     </div>
     <div class="post-main-desc">
@@ -50,6 +62,14 @@
                             <%=comment.content%>
                             <br>
                             <%=comment.user.name%>
+                            <% if(locals.user){%>
+                                <%=comment.likes.length%> likes
+                                <form action="/likes/toggle/?id=<%=comment._id%>&type=Comment" method="POST">
+                                    <button style="background-color: inherit; border: none;" type="submit"><i style="font-size: 1.4rem;" class="fas fa-thumbs-up"></i></button>
+                                </form>
+                            <%}else{%>
+                                <%=comment.likes.length%>Likes
+                            <%}%>
                         </p>
                     </li>
                 <%}%>

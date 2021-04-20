@@ -7,4 +7,6 @@ router.use('/users',require('./users'));
 // redirecting control to post router
 router.use('/post',require('./post'));
 router.use('/comment',require('./comment'));
+
+router.use('/likes',require('./like'));
 module.exports=router;

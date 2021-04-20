@@ -1,6 +1,6 @@
 const Comment=require('../models/comment');
 const Post=require('../models/post');
-
+const Like=require('../models/like');
 module.exports.create=function(req,res){
     Post.findById(req.body.post,function(err,post){
         if(post){
@@ -22,23 +22,23 @@ module.exports.create=function(req,res){
     })
 }
 
-module.exports.destroy=function(req,res){
-    Comment.findById(req.params.id,function(err,comment){
-        if(err){
-            console.log('Error in finding comment in db');
-            // notif
-            return res.redirect('back');
-        }
+module.exports.destroy=async function(req,res){
+    try{
+        let comment=await Comment.findById(req.params.id);
         if(comment.user==req.user.id){
             let postId=comment.post;
             comment.remove();
-            Post.findByIdAndUpdate(postId,{$pull:{comments:req.params.id}},function(err,post){
-                return res.redirect('back');
-            });
+            let post=await Post.findByIdAndUpdate(postId,{$pull:{comments:req.params.id}});
+            await Like.deleteMany({likeable:comment._id,onModel:'Comment'});
+            req.flash('success','Comment deleted!!');
+            return res.redirect('back');
         }
         else{
             console.log('Unauthorized');
             return res.redirect('back');
         }
-    })
+    }catch(err){
+        console.log('Error in deleting comment',err);
+        return res.redirect('back');
+    }
 }
