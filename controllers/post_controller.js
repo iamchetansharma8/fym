@@ -60,10 +60,7 @@ module.exports.fullPost=function(req,res){
     .populate({
         path:'comments',
         populate:{
-            path:'user'
-        },
-        populate:{
-            path:'likes'
+            path:'user likes'
         }
     })
     .populate('likes')
