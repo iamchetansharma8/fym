@@ -1,4 +1,4 @@
-<h1>user profile</h1>
+<h1><%=profile_user.name%>'s profile</h1>
 <p>
     <img src="<%=profile_user.avatar%>" alt="<%=profile_user.name%>" width="100">
 </p>
@@ -50,3 +50,25 @@
     </ul>
 </p>
 <!-- connection.follower==profile_user.id|| -->
+<%if(posts.length>0){%>
+    <p>
+        Posts by <%=profile_user.name%>
+        <ul>
+            <% for(post of posts){%>
+                <li>
+                    <h1><%=post.title%></h1>
+                    
+                    <p>Published On : <%=post.createdAt.toLocaleDateString()%></p>
+                    <p><%=post.description%></p>
+                    <button><a href="/post/read_full/<%=post.id%>">Read Complete Post</a></button>
+                    <%if(locals.user&&locals.user.id==post.user){%>
+                        <button><a href="/post/destroy/<%=post.id%>">Delete Post</a></button>
+                        <button><a href="/post/edit/<%=post.id%>">Edit Post</a></button>
+                    <%}%>
+                </li>
+            <%}%>
+        </ul>
+    </p>
+<%}else{%>
+    Here your posts will be shown. As of now you have'nt posted anything
+<%}%>

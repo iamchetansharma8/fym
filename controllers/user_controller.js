@@ -1,5 +1,6 @@
 const user  = require('../config/mongoose');
 const User=require('../models/user');
+const Post=require('../models/post');
 const ResetPassToken=require('../models/resetPassToken');
 const EnableAccessToken=require('../models/enableAccToken');
 const fs=require('fs');
@@ -22,9 +23,13 @@ module.exports.profile=async function(req,res){
             path:'follower following'
         }
     });
+    let posts=await Post.find({
+        user:req.params.id
+    });
     return res.render('user_profile',{
         title:"Users's profile",
-        profile_user:user
+        profile_user:user,
+        posts:posts
     });
 }
 
