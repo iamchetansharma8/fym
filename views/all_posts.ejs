@@ -1,17 +1,50 @@
 <div>
-    <ul>
-        <% for(post of posts){%>
-            <li>
-                <h1><%=post.title%></h1>
-                <br>
-                <p>Posted By : <%=post.user.name%> &nbsp &nbsp &nbsp &nbsp Published On : <%=post.createdAt.toLocaleDateString()%></p>
-                <p><%=post.description%></p>
-                <button><a href="/post/read_full/<%=post.id%>">Read Complete Post</a></button>
-                <%if(locals.user&&locals.user.id==post.user.id){%>
-                    <button><a href="/post/destroy/<%=post.id%>">Delete Post</a></button>
-                    <button><a href="/post/edit/<%=post.id%>">Edit Post</a></button>
-                <%}%>
-            </li>
-        <%}%>
-    </ul>
+    Search a post
+    <form action="/post/all_posts" method="GET">
+        <input type="text" name="search" placeholder="search post">
+        <input type="submit" value="Search Post">
+    </form>
 </div>
+<%if(searched==false){%>
+    <div>
+        <ul>
+            <% for(post of posts){%>
+                <li>
+                    <h1><%=post.title%></h1>
+                    <br>
+                    <p>Posted By : <%=post.user.name%> &nbsp &nbsp &nbsp &nbsp Published On : <%=post.createdAt.toLocaleDateString()%></p>
+                    <p><%=post.description%></p>
+                    <button><a href="/post/read_full/<%=post.id%>">Read Complete Post</a></button>
+                    <%if(locals.user&&locals.user.id==post.user.id){%>
+                        <button><a href="/post/destroy/<%=post.id%>">Delete Post</a></button>
+                        <button><a href="/post/edit/<%=post.id%>">Edit Post</a></button>
+                    <%}%>
+                </li>
+            <%}%>
+        </ul>
+    </div>
+<%}%>
+<%if(searched==true){%>
+    <%if(noMatch){%>
+        <%=noMatch%>
+    <%}else{%>
+        <div>
+            Your search results are :
+            <ul>
+                <% for(post of posts){%>
+                    <li>
+                        <h1><%=post.title%></h1>
+                        <br>
+                        <p>Posted By : <%=post.user.name%> &nbsp &nbsp &nbsp &nbsp Published On : <%=post.createdAt.toLocaleDateString()%></p>
+                        <p><%=post.description%></p>
+                        <button><a href="/post/read_full/<%=post.id%>">Read Complete Post</a></button>
+                        <%if(locals.user&&locals.user.id==post.user.id){%>
+                            <button><a href="/post/destroy/<%=post.id%>">Delete Post</a></button>
+                            <button><a href="/post/edit/<%=post.id%>">Edit Post</a></button>
+                        <%}%>
+                    </li>
+                <%}%>
+            </ul>
+        </div>
+    <%}%>
+<%}%>

@@ -43,12 +43,36 @@ module.exports.create=function(req,res){
     });
 }
 module,exports.showPosts=function(req,res){
-    Post.find({}).populate('user','name').exec(function(err,posts){
-        return res.render('all_posts',{
-            title:"fym | All posts",
-            posts:posts
+    let noMatch = null,searched=false;
+    if(req.query.search){
+        searched=true;
+        const regex = new RegExp(escapeRegex(req.query.search), 'gi');
+        Post.find({title: regex}, function(err, allPosts){
+            if(err){
+                console.log(err);
+            } else {
+               if(allPosts.length < 1) {
+                   noMatch = "No posts match that query, please try again.";
+               }
+               return res.render("all_posts",{
+                title:"fym | Searched post Results",
+                posts:allPosts,
+                noMatch: noMatch,
+                searched:searched
+            });
+            }
+         });
+    }
+    else{
+        Post.find({}).populate('user','name').exec(function(err,posts){
+            return res.render('all_posts',{
+                title:"fym | All posts",
+                posts:posts,
+                noMatch: noMatch,
+                searched:searched
+            });
         });
-    })
+    }
 }
 module.exports.fullPost=function(req,res){
     if(!req.isAuthenticated()){
@@ -149,3 +173,6 @@ module.exports.edit=function(req,res){
         }
     })
 }
+function escapeRegex(text) {
+    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+};
