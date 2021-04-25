@@ -32,7 +32,11 @@ const userSchema=new mongoose.Schema({
     nfollowers:{
         type:Number,
         default:0
-    }
+    },
+    topics:[{
+        type:mongoose.Schema.ObjectId,
+        ref:'Topic'
+    }]
 },
 {
     timestamps:true

@@ -20,9 +20,7 @@ module.exports.followUnfollow=async function(req,res){
             cur_connection=await Connection.findOne({follower:req.params.id,following:req.user.id});
         }*/
         if(cur_connection){
-            console.log('l0');
             await User.findByIdAndUpdate(user1.id,{$pull:{connections:cur_connection.id}});
-            console.log('l1');
             await User.findByIdAndUpdate(user2.id,{$pull:{connections:cur_connection.id}});
             cur_connection.remove();
             console.log('unfollowed');

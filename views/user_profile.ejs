@@ -5,12 +5,29 @@
 <p>
     <%=profile_user.nfollowers%> followers
 </p>
+<p>
+    Interseted In :
+    <ul>
+        <%for(topic of profile_user.topics){%>
+            <li>
+                <%=topic.name%>
+            </li>
+        <%}%>
+    </ul>
+</p>
 <%if(user.id==profile_user.id){%>
     <form action="/users/update/<%=profile_user.id%>" enctype="multipart/form-data" method="POST">
         <input type="text" name="name" placeholder="Your name" value="<%=profile_user.name%>" required>
         <input type="file" name="avatar" placeholder="Profile picture">
         <input type="submit" value="Update">
     </form>
+    <p>
+        Add topics
+        <form action="/topics/add/<%=profile_user.id%>" method="POST">
+            <input type="text" name="name" placeholder="New topic name">
+            <input type="submit" value="Add Interest">
+        </form>
+    </p>
     <p><%=profile_user.email%></p>
 <%}else{%>
     <p><%=profile_user.name%></p>
