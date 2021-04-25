@@ -21,10 +21,6 @@
     font-size: 2.2rem;
     font-family: sans-serif;
 }
-form{
-    display: flex;
-    flex-direction: column;
-}
 .google-btn{
     background-color: #4285f4;
     border: none;
@@ -70,6 +66,10 @@ form{
     color: white;
     font-size: 1.2rem;
 }
+.create-acc-btn a{
+    color: white;
+    text-decoration: none;
+}
 .create-acc-btn:hover{
     background-color: black;
     cursor: pointer;
@@ -83,6 +83,19 @@ form{
 }
 .create-acc-btn input:hover{
     cursor: pointer;
+}
+#read-complete{
+    background-color: #734cea;
+}
+#destroy-btn{
+    background-color: #4cea8b;
+}
+#edit-btn{
+    background-color: #ea534c;
+}
+.sign-up-form{
+    display: flex;
+    flex-direction: column;
 }
 @media(max-width: 1000px){
     .sign-up-main h1{

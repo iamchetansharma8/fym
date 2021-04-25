@@ -47,7 +47,7 @@ module,exports.showPosts=function(req,res){
     if(req.query.search){
         searched=true;
         const regex = new RegExp(escapeRegex(req.query.search), 'gi');
-        Post.find({title: regex}, function(err, allPosts){
+        Post.find({title: regex}).populate('user','name').exec(function(err, allPosts){
             if(err){
                 console.log(err);
             } else {

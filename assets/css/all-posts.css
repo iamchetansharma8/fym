@@ -1,0 +1,77 @@
+#all-posts-container{
+    display: flex;
+    flex-direction: column;
+}
+#all-posts-search{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.post-search-btn-div{
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+}
+.post-search-inputs{
+    display: flex;
+    flex-direction: column;
+}
+#all-posts-search-form{
+    padding: 1.5rem;
+}
+#search-input{
+    align-items: center;
+}
+#search-input input{
+    width: 40vw;
+}
+#search-post-btn{
+    font-size: 1.2rem;
+    background-color: yellowgreen;
+    color: white;
+    font-family: sans-serif;
+    padding: .7rem;
+    border: none;
+}
+#search-post-btn:hover{
+    cursor: pointer;
+}
+#all-posts-main{
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    box-sizing:border-box;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+.all-posts-list{
+    display: flex;
+    flex-wrap: wrap;
+}
+.individual-post{
+    padding: 1rem;
+    width: 25vw;
+}
+.individ-post-title{
+    height: 10vh;
+    width: 100%;
+}
+.individ-post-det{
+    margin-bottom: 1vh;
+    height: 5vh;
+    width: 100%;
+}
+.individ-post-det p{
+    margin: 0;
+}
+.individ-post-desc p{
+    margin: 0;
+}
+.individ-post-desc{
+    margin-bottom: 1vh;
+    height: 8vh;
+    width: 100%;
+}
