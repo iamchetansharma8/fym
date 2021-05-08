@@ -3,10 +3,62 @@
 
 <!-- later will convert to followers and suggestion kind -->
 <section id="all-users">
-    <h4>All Users</h4>
-    <% for(u of all_users){%>
-        <p>
-            <a href="/users/profile/<%=u.id%>"><%=u.name%></a>
-        </p>
-    <%}%>
+    <div id="all-users-search">
+        <div id="all-users-search-form">
+            <form action="/" method="GET">
+                <div class="user-search-inputs">
+                    <div id="u-search-input">
+                        <label for="search">Search Users</label>
+                        <input type="text" name="search" placeholder="find a user">
+                    </div>
+                    <div class="post-search-btn-div">
+                        <input id="search-user-btn" type="submit" value="Search User">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div>
+        <%if(searched==false){%>
+            <h4>All Users</h4>
+        <% for(u of all_users){%>
+            <p>
+                <div class="home-user-details">
+                    <div>
+                        <img src="<%=u.avatar%>" alt="<%=u.name%>" width="80">
+                    </div>
+                    <div>
+                        <%if(user.id==u.id){%>
+                            <a href="/users/profile/<%=u.id%>"><%=u.name%>(You)</a>
+                        <%}else{%>
+                            <a href="/users/profile/<%=u.id%>"><%=u.name%></a>
+                        <%}%>
+                    </div>
+                </div>
+            </p>
+        <%}%>
+        <%}else{%>
+            <h4>Search Results : </h4>
+            <%if(noMatch){%>
+                <%=noMatch%>
+            <%}else{%>
+                <% for(u of all_users){%>
+                    <p>
+                        <div class="home-user-details">
+                            <div>
+                                <img src="<%=u.avatar%>" alt="<%=u.name%>" width="80">
+                            </div>
+                            <div>
+                                <%if(user.id==u.id){%>
+                                    <a href="/users/profile/<%=u.id%>"><%=u.name%>(You)</a>
+                                <%}else{%>
+                                    <a href="/users/profile/<%=u.id%>"><%=u.name%></a>
+                                <%}%>
+                            </div>
+                        </div>
+                    </p>
+                <%}%>
+            <%}%>
+        <%}%>
+    </div>
 </section>

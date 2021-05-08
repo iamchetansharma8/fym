@@ -54,6 +54,8 @@
 .individual-post{
     padding: 1rem;
     width: 25vw;
+    background-color: bisque;
+    margin-bottom: 1rem;
 }
 .individ-post-title{
     height: 10vh;

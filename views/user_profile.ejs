@@ -1,6 +1,10 @@
-<h1><%=profile_user.name%>'s profile</h1>
+<%if(user.id==profile_user.id){%>
+    <h1>Your profile</h1>
+<%}else{%>
+    <h1><%=profile_user.name%>'s profile</h1>
+<%}%>
 <p>
-    <img src="<%=profile_user.avatar%>" alt="<%=profile_user.name%>" width="100">
+    <img src="<%=profile_user.avatar%>" alt="<%=profile_user.name%>" width="180">
 </p>
 <p>
     <%=profile_user.nfollowers%> followers

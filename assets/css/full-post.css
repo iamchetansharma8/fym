@@ -4,7 +4,7 @@
 }
 .post-main-head{
     height: 38vh;
-    background: #49796b;
+    background: #171e26;
     /* background-image:url(../images/blog-title-backg1.jpg); */
     background-position: center;
     display: flex;
@@ -15,11 +15,11 @@
 #post-heading{
     margin: 0;
     text-align: center;
-    font-size: 2.8rem;
+    font-size: 2rem;
     height: 22vh;
 }
 #post-cred{
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     height: 16vh;
     display: flex;
     align-items: center;
@@ -27,21 +27,21 @@
 }
 .post-main-desc{
     display: flex;
-    background-color: tomato;
-    color: white;
-    font-size: 2.2rem;
+    background-color: #e6e8ec;
+    color: #202020;
+    font-size: 1.8rem;
     justify-content: center;
 }
 .post-main-body{
     line-height: 1.65;
-    background-color: #ffffff;
+    background-color: #f5f6f8;
     color: #3f424e;
     font-size: 1.1rem;
     font-family: sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 1vh 5vw 1vh 5vw;
+    padding: 1vh 12vw 1vh 12vw;
 }
 .post-main-body img{
     display: block;
@@ -60,10 +60,10 @@
     margin-bottom: 3vh;
 }
 .post-main-body img{
-    margin-top: 10vh;
-    margin-bottom: 10vh;
-    height: 56vh;
-    width: 62vw;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    height: 46vh;
+    width: 52vw;
 
 }
 .post-comments{
@@ -71,4 +71,25 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: #f5f6f8;
+}
+.full-post-head-btns{
+    background-color: #171e26;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+}
+.full-post-head-btns a{
+    text-decoration: none;
+    color: white;
+}
+.post-comment-delete{
+    background-color: #171e26;
+    border: none;
+    padding: .5rem;
+}
+.post-comment-delete a{
+    text-decoration: none;
+    color: white;
+    font-family: sans-serif;
 }

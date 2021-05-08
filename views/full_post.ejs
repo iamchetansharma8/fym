@@ -12,16 +12,16 @@
             </div>
             <% if(locals.user.id==cur_post.user.id){%>
                 <div>
-                    <button><a href="/post/destroy/<%=cur_post.id%>">Delete Post</a></button>
+                    <button class="full-post-head-btns"><a href="/post/destroy/<%=cur_post.id%>"><i class="fas fa-trash-alt"></i> Delete Post</a></button>
                 </div>
                 <div>
-                    <button><a href="/post/edit/<%=cur_post.id%>">Edit Post</a></button>
+                    <button class="full-post-head-btns"><a href="/post/edit/<%=cur_post.id%>"><i class="fas fa-edit"></i> Edit Post</a></button>
                 </div>
             <%}%>
             <div>
                 <% if(locals.user){%>
                     <form action="/likes/toggle/?id=<%=cur_post._id%>&type=Post" method="POST">
-                        <button type="submit"><%=cur_post.likes.length%>Likes</button>
+                        <button class="full-post-head-btns" type="submit"><%=cur_post.likes.length%> <i class="far fa-thumbs-up"></i></button>
                     </form>
                     <!-- <a class="toggle-like-button" href="/likes/toggle/?id=<%=cur_post._id%>&type=Post"> -->
                         <!-- <%=cur_post.likes.length%>Likes -->
@@ -55,7 +55,7 @@
                     <li>
                         <% if(locals.user.id==comment.user.id){%>
                             <div>
-                                <button><a href="/comment/destroy/<%=comment.id%>">Delete Comment</a></button>
+                                <button class="post-comment-delete"><a href="/comment/destroy/<%=comment.id%>"><i class="fas fa-trash-alt"></i> Delete Comment</a></button>
                             </div>
                         <%}%>
                         <p>
@@ -65,7 +65,7 @@
                             <% if(locals.user){%>
                                 <%=comment.likes.length%> likes
                                 <form action="/likes/toggle/?id=<%=comment._id%>&type=Comment" method="POST">
-                                    <button style="background-color: inherit; border: none;" type="submit"><i style="font-size: 1.4rem;" class="fas fa-thumbs-up"></i></button>
+                                    <button style="background-color: inherit; border: none; color:#0b90c4;" type="submit"><i style="font-size: 2rem;" class="fas fa-thumbs-up"></i></button>
                                 </form>
                             <%}else{%>
                                 <%=comment.likes.length%>Likes

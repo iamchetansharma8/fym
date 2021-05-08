@@ -8,12 +8,12 @@
             <div id="new-post-title">
                 <label for="title">Title</label>
                 <br>
-                <input type="text" name="title" id="" value="<%=cur_post.title%>" placeholder="Enter title of your post" required>
+                <input type="text" maxlength="35" name="title" id="" value="<%=cur_post.title%>" placeholder="Enter title of your post" required>
             </div>
             <div id="new-post-desc">
                 <label for="description">Description</label>
                 <br>
-                <textarea required name="description" value="<%=cur_post.description%>" id="" placeholder="Enter description for your post"><%=cur_post.description%></textarea>
+                <textarea maxlength="75" required name="description" value="<%=cur_post.description%>" id="" placeholder="Enter description for your post"><%=cur_post.description%></textarea>
             </div>
             <div id="new-post-markdown">
                 <label for="markdown">Markdown</label>
