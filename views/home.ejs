@@ -28,7 +28,7 @@
                         <img src="<%=u.avatar%>" alt="<%=u.name%>" width="80">
                     </div>
                     <div>
-                        <%if(user.id==u.id){%>
+                        <%if(locals.user&&user.id==u.id){%>
                             <a href="/users/profile/<%=u.id%>"><%=u.name%>(You)</a>
                         <%}else{%>
                             <a href="/users/profile/<%=u.id%>"><%=u.name%></a>
@@ -49,7 +49,7 @@
                                 <img src="<%=u.avatar%>" alt="<%=u.name%>" width="80">
                             </div>
                             <div>
-                                <%if(user.id==u.id){%>
+                                <%if(locals.user&&user.id==u.id){%>
                                     <a href="/users/profile/<%=u.id%>"><%=u.name%>(You)</a>
                                 <%}else{%>
                                     <a href="/users/profile/<%=u.id%>"><%=u.name%></a>
