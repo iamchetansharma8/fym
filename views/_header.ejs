@@ -3,35 +3,38 @@
     <ul>
         <% if(locals.user){%>
             <li>
-                <a href="/">Home</a>
+                <a href="/"><i class="fas fa-home"></i> Home</a>
             </li>
             <li>
-                <a href="/users/profile/<%=user.id%>"><%=user.name%></a>
+                <a href="/users/profile/<%=user.id%>"><i class="fas fa-user-tie"></i> <%=user.name%></a>
             </li>
             <li>
-                <a href="/post/create_page">New Post</a>
+                <a href="/post/create_page"><i class="fas fa-plus"></i> New Post</a>
             </li>
             <li>
-                <a href="/post/all_posts">All posts</a>
+                <a href="/post/all_posts"><i class="fas fa-wallet"></i> All posts</a>
             </li>
             <li>
-                <a href="/users/sign_out">Sign Out</a>
+                <a href="/users/sign_out"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
             </li>
         <%}else{%>
             <li>
-                <a href="/post/create_page">New Post</a>
+                <a href="/"><i class="fas fa-home"></i> Home</a>
             </li>
             <li>
-                <a href="/post/all_posts">All posts</a>
+                <a href="/post/create_page"><i class="fas fa-plus"></i> New Post</a>
             </li>
             <li>
-                <a href="/users/sign_in">Sign In</a>
+                <a href="/post/all_posts"><i class="fas fa-wallet"></i> All posts</a>
             </li>
             <li>
-                <a href="/users/sign_up">Sign Up</a>
+                <a href="/users/sign_in"><i class="fas fa-sign-in-alt"></i> Sign In</a>
             </li>
             <li>
-                <a href="/users/forgot_password">Forgot Password</a>
+                <a href="/users/sign_up"><i class="fas fa-user-plus"></i> Sign Up</a>
+            </li>
+            <li>
+                <a href="/users/forgot_password"><i class="fas fa-key"></i> Forgot Password</a>
             </li>
         <%}%>
     </ul>

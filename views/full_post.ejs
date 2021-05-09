@@ -5,9 +5,11 @@
         </div>
         <div id="post-cred">
             <div>
+                <i class="fas fa-feather-alt"></i>
                 Posted By : <%=cur_post.user.name%>
             </div>
             <div>
+                <i class="fas fa-calendar-day"></i>
                 Published On : <%=cur_post.createdAt.toLocaleDateString()%>
             </div>
             <% if(locals.user.id==cur_post.user.id){%>
@@ -21,7 +23,7 @@
             <div>
                 <% if(locals.user){%>
                     <form action="/likes/toggle/?id=<%=cur_post._id%>&type=Post" method="POST">
-                        <button class="full-post-head-btns" type="submit"><%=cur_post.likes.length%> <i class="far fa-thumbs-up"></i></button>
+                        <button class="full-post-head-btns hover-pointer" type="submit"><%=cur_post.likes.length%> <i class="far fa-thumbs-up"></i></button>
                     </form>
                     <!-- <a class="toggle-like-button" href="/likes/toggle/?id=<%=cur_post._id%>&type=Post"> -->
                         <!-- <%=cur_post.likes.length%>Likes -->
@@ -65,7 +67,7 @@
                             <% if(locals.user){%>
                                 <%=comment.likes.length%> likes
                                 <form action="/likes/toggle/?id=<%=comment._id%>&type=Comment" method="POST">
-                                    <button style="background-color: inherit; border: none; color:#0b90c4;" type="submit"><i style="font-size: 2rem;" class="fas fa-thumbs-up"></i></button>
+                                    <button class="hover-pointer" style="background-color: inherit; border: none; color:#0b90c4;" type="submit"><i style="font-size: 2rem;" class="fas fa-thumbs-up"></i></button>
                                 </form>
                             <%}else{%>
                                 <%=comment.likes.length%>Likes
