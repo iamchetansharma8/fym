@@ -1,21 +1,36 @@
 <link rel="stylesheet" href="/css/home.css">
-<h1>Home!!</h1>
+<br><br>
 
 <!-- later will convert to followers and suggestion kind -->
 <section id="all-users">
     <div id="all-users-search">
         <div id="all-users-search-form">
-            <form action="/" method="GET">
-                <div class="user-search-inputs">
-                    <div id="u-search-input">
-                        <label for="search">Search Users</label>
-                        <input type="text" name="search" placeholder="find a user">
+            <div id="find-by-name">
+                <form action="/" method="GET">
+                    <div class="user-search-inputs">
+                        <div id="u-search-input">
+                            <label for="search">Search User by name</label>
+                            <input type="text" name="namesearch" placeholder="find by name">
+                        </div>
+                        <div class="post-search-btn-div">
+                            <input id="search-user-btn" type="submit" value="Search User">
+                        </div>
                     </div>
-                    <div class="post-search-btn-div">
-                        <input id="search-user-btn" type="submit" value="Search User">
+                </form>
+            </div>
+            <div id="find-by-topic">
+                <form action="/" method="GET">
+                    <div class="user-search-inputs">
+                        <div id="u-search-input">
+                            <label for="search">Search User by topics</label>
+                            <input type="text" name="topicsearch" placeholder="find by topic">
+                        </div>
+                        <div class="post-search-btn-div">
+                            <input id="search-user-btn" type="submit" value="Search User">
+                        </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
     <div>
@@ -37,7 +52,7 @@
                 </div>
             </p>
         <%}%>
-        <%}else{%>
+        <%}else if(by_name){%>
             <h4>Search Results : </h4>
             <%if(noMatch){%>
                 <%=noMatch%>
@@ -57,6 +72,30 @@
                             </div>
                         </div>
                     </p>
+                <%}%>
+            <%}%>
+        <%}else{%>
+            <h4>Search Results : </h4>
+            <%if(noMatch){%>
+                <%=noMatch%>
+            <%}else{%>
+                <%for(cur_topic of all_topics){%>
+                    <% for(u of cur_topic.users){%>
+                        <p>
+                            <div class="home-user-details">
+                                <div>
+                                    <img src="<%=u.avatar%>" alt="<%=u.name%>" width="80">
+                                </div>
+                                <div>
+                                    <%if(locals.user&&user.id==u.id){%>
+                                        <a href="/users/profile/<%=u.id%>"><%=u.name%>(You)</a>
+                                    <%}else{%>
+                                        <a href="/users/profile/<%=u.id%>"><%=u.name%></a>
+                                    <%}%>
+                                </div>
+                            </div>
+                        </p>
+                    <%}%>
                 <%}%>
             <%}%>
         <%}%>
