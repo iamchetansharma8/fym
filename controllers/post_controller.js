@@ -1,6 +1,8 @@
 const Post=require('../models/post');
 const Comment=require('../models/comment');
 const Like = require('../models/like');
+const User=require('../models/user');
+const postMailer=require('../mailers/new_post');
 
 // create new post page
 module.exports.createPage=function(req,res){
@@ -24,6 +26,34 @@ module.exports.editPage=async function(req,res){
 }
 */
 // creating new post 
+
+module.exports.create=async function(req,res){
+    try{
+        let post=await Post.create({
+            title:req.body.title,
+            user:req.user._id,
+            description:req.body.description,
+            markdown:req.body.markdown
+        });
+        console.log('iii**',req.user._id);
+        let userCur=await User.findById(req.user._id)
+        .populate({
+            path:'connections',
+            populate:{
+                path:'following'
+            }
+        });
+        postMailer.newPost(userCur,post);
+        console.log('Post published!!');
+        req.flash('success','Post published!!');
+        return res.redirect('/post/all_posts');
+    }catch(err){
+        console.log('Error in creating post',err);
+        req.flash('error','Error in creating post');
+        return res.redirect('back');
+    }
+}
+/*
 module.exports.create=function(req,res){
     // console.log(req.body.title,'0',req.user._id,'1',req.body.description,'2',req.body.markdown,'3');
     Post.create({
@@ -37,11 +67,15 @@ module.exports.create=function(req,res){
             req.flash('error','Error in creating post');
             return;
         }
+        // let user=await User.findById(req.user.id).populate;
+
+        // postMailer.newPost(user);
         console.log('Post published!!');
         req.flash('success','Post published!!');
         return res.redirect('/post/all_posts');
     });
 }
+*/
 module,exports.showPosts=function(req,res){
     let noMatch = null,searched=false;
     if(req.query.search){
@@ -114,7 +148,7 @@ module.exports.destroy= async function(req,res){
             // only err as single argument as comments have been deleted
 
             req.flash('success','Post deleted successfully');
-            return res.redirect('back');
+            return res.redirect('/post/all_posts');
         }
         else{
             req.flash('error','You can not delete this post');

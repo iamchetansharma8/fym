@@ -1,12 +1,18 @@
 const nodemailer=require('../config/nodemailer');
-exports.newSignUp=(user)=>{
+exports.newPost=(user,post)=>{
+    let emails=[];
+    for(i of user.connections){
+        if(i.following.id!=user.id){
+            emails.push(i.following.email);
+        }
+    }
     // console.log('Inside new sign up mailer',user);
     // previous part of the path is defined in nodemailer.js
-    let htmlString=nodemailer.renderTemplate({user:user},'/sign-ups/new_signup.ejs');
+    let htmlString=nodemailer.renderTemplate({user:user,post:post},'/new_post/new_post_email.ejs');
     nodemailer.transporter.sendMail({
         from:process.env.NODEMAILER_MAIL_ID,
-        to:user.email,
-        subject:'New Sign Up from your account',
+        to:emails,
+        subject:'A new post',
         html: htmlString
     },(err,info)=>{
         if(err){
