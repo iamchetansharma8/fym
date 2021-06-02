@@ -3,7 +3,8 @@ const Comment=require('../models/comment');
 const Like = require('../models/like');
 const User=require('../models/user');
 const postMailer=require('../mailers/new_post');
-
+const postEmailWorker=require('../workers/new-post-email-worker');
+const queue = require('../config/kue');
 // create new post page
 module.exports.createPage=function(req,res){
     return res.render('new_post',{
@@ -43,7 +44,15 @@ module.exports.create=async function(req,res){
                 path:'following'
             }
         });
-        postMailer.newPost(userCur,post);
+        // postMailer.newPost(userCur,post);
+        // console.log('hh',userCur.connections[0].following.id);
+        let job=queue.create('newPostEmails',{userCur,post}).save(function(err){
+            if(err){
+                console.log('Error in creating a queue',err);return;
+            }
+            // console.log('klkk',job.data.userCur.connections[0].following.id,'l');
+            console.log('job enqueued',job.id);
+        });
         console.log('Post published!!');
         req.flash('success','Post published!!');
         return res.redirect('/post/all_posts');
@@ -81,7 +90,9 @@ module,exports.showPosts=function(req,res){
     if(req.query.search){
         searched=true;
         const regex = new RegExp(escapeRegex(req.query.search), 'gi');
-        Post.find({title: regex}).populate('user','name').exec(function(err, allPosts){
+        Post.find({title: regex})
+        .sort('-createdAt')
+        .populate('user','name').exec(function(err, allPosts){
             if(err){
                 console.log(err);
             } else {
@@ -98,7 +109,9 @@ module,exports.showPosts=function(req,res){
          });
     }
     else{
-        Post.find({}).populate('user','name').exec(function(err,posts){
+        Post.find({})
+        .sort('-createdAt')
+        .populate('user','name').exec(function(err,posts){
             return res.render('all_posts',{
                 title:"fym | All posts",
                 posts:posts,

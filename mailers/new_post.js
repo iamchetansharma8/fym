@@ -1,8 +1,11 @@
+const { use } = require('passport');
 const nodemailer=require('../config/nodemailer');
 exports.newPost=(user,post)=>{
     let emails=[];
+    // console.log('ad',user.connections[0].following.id,'df');
     for(i of user.connections){
-        if(i.following.id!=user.id){
+        // console.log('k',i.following.id,'l');
+        if(i.following._id!=user.id){
             emails.push(i.following.email);
         }
     }

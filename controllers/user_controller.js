@@ -29,7 +29,7 @@ module.exports.profile=async function(req,res){
     })
     let posts=await Post.find({
         user:req.params.id
-    });
+    }).sort('-createdAt');
     return res.render('user_profile',{
         title:"Users's profile",
         profile_user:user,

@@ -20,7 +20,7 @@
                 <!-- <ul> -->
                     <% for(post of posts){%>
                         <!-- <li> -->
-                            <div class="individual-post">
+                            <div class="individual-post" id="post-<%=post._id%>">
                                 <div class="individ-post-title">
                                     <h1><%=post.title%></h1>
                                 </div>
@@ -33,7 +33,7 @@
                                 <div class="individ-post-btns">
                                     <button id="read-complete" class="all-posts-btns"><a href="/post/read_full/<%=post.id%>"><i class="fas fa-list-alt"></i> Read Complete Post</a></button>
                             <%if(locals.user&&locals.user.id==post.user.id){%>
-                                <button id="destroy-btn" class="all-posts-btns"><a href="/post/destroy/<%=post.id%>"><i class="fas fa-trash-alt"></i> Delete Post</a></button>
+                                <button id="destroy-btn" class="all-posts-btns"><a class="delete-post-btn" href="/post/destroy/<%=post.id%>"><i class="fas fa-trash-alt"></i> Delete Post</a></button>
                                 <button id="edit-btn" class="all-posts-btns"><a href="/post/edit/<%=post.id%>"><i class="fas fa-edit"></i> Edit Post</a></button>
                             <%}%>
                                 </div>

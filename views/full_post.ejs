@@ -44,7 +44,7 @@
 
 <div class="post-comments">
     <div>
-        <form action="/comment/create" method="POST">
+        <form action="/comment/create" id="create-comment-form-<%=cur_post._id%>" method="POST">
             <textarea name="content" id="" cols="80" rows="4" placeholder="Add you comment here...." required></textarea>
             <!-- <input type="textarea" name="content" class="comment-text" placeholder="Add you comment here...." required> -->
             <input type="hidden" name="post" value="<%=cur_post._id%>">
