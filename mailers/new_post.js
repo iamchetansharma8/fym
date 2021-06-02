@@ -5,7 +5,7 @@ exports.newPost=(user,post)=>{
     // console.log('ad',user.connections[0].following.id,'df');
     for(i of user.connections){
         // console.log('k',i.following.id,'l');
-        if(i.following._id!=user.id){
+        if(i.following._id!=user._id){
             emails.push(i.following.email);
         }
     }
