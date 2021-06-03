@@ -18,8 +18,12 @@ module.exports.destroy= async function(req,res){
     try{
         let post=await Post.findById(req.params.id);
         // req.user._id is replace by .id as this gives us a string value to compare here
-        // if(post.user==req.user.id){
-
+        if(post.user==req.user.id){
+            if(!post){
+                return res.json(200,{
+                    message:"Post not found or is already deleted"
+                });
+            }
             // CHANGE :: delete the associated likes for the post and all its comments' likes too
             await Like.deleteMany({likeable: post, onModel: 'Post'});
             await Like.deleteMany({_id: {$in: post.comments}});
@@ -33,11 +37,12 @@ module.exports.destroy= async function(req,res){
             return res.json(200,{
                 message:"Post and associated comments deleted successfully"
             });
-        // }
-        // else{
-        //     req.flash('error','You can not delete this post');
-        //     return res.redirect('back');
-        // }
+        }
+        else{
+            return res.json(401,{
+                message:"You can't delete this post (unauthorised)"
+            });
+        }
     }
     catch(err){
         // req.flash('error',err);

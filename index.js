@@ -15,6 +15,7 @@ require('dotenv').config();
 const session=require('express-session');
 const passport = require('passport');
 const passportLocal=require('./config/passport-local-strategy');
+const passportJWT=require('./config/passport-jwt-strategy');
 const passportGoogle=require('./config/passport-google-oauth2-strategy');
 // to store session cookie in db, so that everytime we restart server, all users shouldn't
 // be logged out
