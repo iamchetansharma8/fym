@@ -17,6 +17,7 @@
         <link rel="stylesheet" href="/css/new-post.css">
         <link rel="stylesheet" href="/css/all-posts.css">
         <link rel="stylesheet" href="/css/home.css">
+        <link rel="stylesheet" href="/css/home-chat.css">
         <%-style%>
     </head>
 </html>
@@ -62,4 +63,11 @@
             }).show();
         <%}%>
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script src="/js/home_chat_engine.js"></script>
+    <%if(locals.user){%>
+        <script>
+            new ChatEngine('home-chat-box','<%=locals.user.email%>');
+        </script>
+    <%}%>
 </body>
