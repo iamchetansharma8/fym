@@ -33,8 +33,21 @@ class ChatEngine{
         // firing an event along with message when clicked on submit present in frontend
         $('#send-home-msg').click(function(){
             let msg=$('.home-chat-input').val();
-
+            let allData={
+                msg:msg,
+                email:self.userEmail,
+                chatroom:'fymroom'
+            }
             if(msg!=''){
+                //start
+                console.log(allData,'llk');
+                // let tosend=JSON.stringify(allData);
+                $.post('/home-msg',   // url
+                { myData: allData }, // data to be submit
+                    function(data, status, jqXHR) {// success callback
+                        console.log(status,'**');
+                });
+                // end
                 self.socket.emit('send_message',{
                     message: msg,
                     user_email:self.userEmail,
@@ -77,3 +90,4 @@ class ChatEngine{
         });
     }
 }
+$('.home-chats').scrollTop($('.home-chats')[0].scrollHeight);

@@ -1,18 +1,37 @@
 <% if(locals.user){%>
-    <section class="home-chat-box">
-        <section class="home-chats">
-            <ul class="home-chat-list">
-                <li class="other-msg">
-                    <span>Other Message </span>
-                </li>
-                <li class="self-msg">
-                    <span>Self Message </span>
-                </li>
-            </ul>
+        <section class="home-chat-box">
+            <section class="chat-heading">
+                <h1>Community Chat</h1>
+            </section>
+            <section class="home-chats">
+                <ul class="home-chat-list">
+                    <!-- <li class="other-msg">
+                        <span>Other Message </span>
+                    </li>
+                    <li class="self-msg">
+                        <span>Self Message </span>
+                    </li> -->
+                    <%if(room){%>
+                        <%for(m of room.messages){%>
+                            <%if(m.email==user.email){%>
+                                <li class="self-msg">
+                                    <span><%=m.message%></span>
+                                    <sub><%=m.email%></sub>
+                                </li>
+                            <%}else{%>
+                                <li class="other-msg">
+                                    <span><%=m.message%></span>
+                                    <sub><%=m.email%></sub>
+                                </li>
+                            <%}%>
+                        <%}%>
+                    <%}%>
+                    
+                </ul>
+            </section>
+            <section class="home-chat-form">
+                <input type="text" class="home-chat-input" placeholder="Type your message here">
+                <button id="send-home-msg">Send</button>
+            </section>
         </section>
-        <section class="home-chat-form">
-            <input type="text" class="home-chat-input" placeholder="Type your message here">
-            <button id="send-home-msg">Send</button>
-        </section>
-    </section>
 <% } %>

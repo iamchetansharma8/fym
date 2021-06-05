@@ -6,6 +6,7 @@ const passport = require('passport');
 
 router.get('/',homeController.home);
 router.post('/manage-connection/:id',passport.checkAuthentication,connectionController.followUnfollow);
+router.post('/home-msg',passport.checkAuthentication,homeController.homeChat);
 router.use('/users',require('./users'));
 // redirecting control to post router
 router.use('/post',require('./post'));

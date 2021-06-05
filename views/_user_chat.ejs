@@ -1,0 +1,31 @@
+<% if(locals.user && user.id!=profile_user.id){%>
+    <%let a;%>
+    <%for(connection of profile_user.connections){%>
+        <%if(connection.follower.id==user.id){%>
+            <%a=connection.id%>
+        <%}%>
+    <%}%>
+    <%if(a){%>
+        <section class="user-chat-box" id="chat-box-<%=a%>">
+            <section class="chat-heading">
+                <h1><%=profile_user.name%></h1>
+            </section>
+            <section class="user-chats">
+                <ul class="user-chat-list">
+                    <li class="other-msg">
+                        <span>Other Message </span>
+                    </li>
+                    <li class="self-msg">
+                        <span>Self Message </span>
+                    </li>
+                </ul>
+            </section>
+            <section class="user-chat-form">
+                <!-- <form action="/home-msg" method="POST"> -->
+                    <input type="text" class="user-chat-input" placeholder="Type your message here" name="home-msg-content">
+                    <button id="send-user-msg">Send</button>
+                <!-- </form> -->
+            </section>
+        </section>
+    <%}%>
+<% } %>

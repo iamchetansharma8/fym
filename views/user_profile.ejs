@@ -47,6 +47,7 @@
             <button type="submit">Unfollow</button>
         <%}else{%>
             <button type="submit">Follow</button>
+            Note : You must follow <%=profile_user.name%> to message them
         <%}%>
     </form>
 <%}%>
@@ -93,3 +94,4 @@
 <%}else{%>
     Here your posts will be shown. As of now you have'nt posted anything
 <%}%>
+<%- include('_user_chat') -%>

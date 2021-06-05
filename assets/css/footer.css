@@ -4,6 +4,6 @@
 }
 footer{
     margin: 0;
-    position: relative;
+    position: absolute;
     bottom: 0;
 }
