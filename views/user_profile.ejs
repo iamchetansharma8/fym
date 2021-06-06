@@ -95,3 +95,24 @@
     Here your posts will be shown. As of now you have'nt posted anything
 <%}%>
 <%- include('_user_chat') -%>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+<%if(locals.user && user.id!=profile_user.id){%>
+    <%let a;let x;let y;%>
+    <%x=Date.parse(user.createdAt)%>
+    <%y=Date.parse(profile_user.createdAt)%>
+    <%let m=(x<=y)%>
+    <%if(m){%>
+        <%a=user.id+profile_user.id%>
+    <%}else{%>
+        <%a=profile_user.id+user.id%>
+    <%}%>
+    <script src="/js/user_chat_engine.js"></script>
+    <script>
+        new ChatEngineUser('chat-Box-<%=a%>','<%=locals.user.email%>');
+    </script>
+    
+    <script>
+        console.log('somethong');
+    </script>
+    
+<%}%>

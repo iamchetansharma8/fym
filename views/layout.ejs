@@ -26,6 +26,7 @@
     <%-include('_header');%>
     <%- body %>
     <%-include('_footer');%>
+    <%- script %>
     <script>
         <% if(flash.success && flash.success.length>0){ %>
             new Noty({
@@ -64,11 +65,16 @@
             }).show();
         <%}%>
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
-    <script src="/js/home_chat_engine.js"></script>
-    <%if(locals.user){%>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script> -->
+    <!-- <%if(locals.user){%>
+        <script src="/js/home_chat_engine.js"></script>
         <script>
             new ChatEngine('home-chat-box','<%=locals.user.email%>');
         </script>
-    <%}%>
+        
+        <script>
+            console.log('somethong');
+        </script>
+        
+    <%}%> -->
 </body>

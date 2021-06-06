@@ -37,6 +37,17 @@ module.exports.chatSockets=function(socketServer){
             // now this will be detected in client side
         });
 
+        // start user rooms 1
+        socket.on('join_user_room',function(data){
+            console.log('Joining request for room : ',data.chatroom,' received ,data:: ',data);
+            socket.join(data.chatroom);
+            io.in(data.chatroom).emit('custom_user_joined', data);
+        });
+        socket.on('send_user_message',function(data){
+            io.in(data.chatroom).emit('receive_user_message',data);
+        });
+        // end user rooms 1
+
         // detect send_message fired from frontend code while clicking on submit of home
         socket.on('send_message',function(data){
 

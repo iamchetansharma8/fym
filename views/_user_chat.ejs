@@ -1,23 +1,41 @@
 <% if(locals.user && user.id!=profile_user.id){%>
-    <%let a;%>
-    <%for(connection of profile_user.connections){%>
-        <%if(connection.follower.id==user.id){%>
-            <%a=connection.id%>
-        <%}%>
+    <%let a;let x;let y;%>
+    <%x=Date.parse(user.createdAt)%>
+    <%y=Date.parse(profile_user.createdAt)%>
+    <%let m=(x<=y)%>
+    <%if(m){%>
+        <%a=user.id+profile_user.id%>
+    <%}else{%>
+        <%a=profile_user.id+user.id%>
     <%}%>
     <%if(a){%>
-        <section class="user-chat-box" id="chat-box-<%=a%>">
+        <section class="user-chat-box" id="chat-Box-<%=a%>">
             <section class="chat-heading">
                 <h1><%=profile_user.name%></h1>
             </section>
             <section class="user-chats">
                 <ul class="user-chat-list">
-                    <li class="other-msg">
+                    <!-- <li class="other-msg">
                         <span>Other Message </span>
                     </li>
                     <li class="self-msg">
                         <span>Self Message </span>
-                    </li>
+                    </li> -->
+                    <%if(room){%>
+                        <%for(m of room.messages){%>
+                            <%if(m.email==user.email){%>
+                                <li class="self-msg">
+                                    <span><%=m.message%></span>
+                                    <sub><%=m.email%></sub>
+                                </li>
+                            <%}else{%>
+                                <li class="other-msg">
+                                    <span><%=m.message%></span>
+                                    <sub><%=m.email%></sub>
+                                </li>
+                            <%}%>
+                        <%}%>
+                    <%}%>
                 </ul>
             </section>
             <section class="user-chat-form">
@@ -28,4 +46,7 @@
             </section>
         </section>
     <%}%>
+    <script>
+        console.log('df');
+    </script>
 <% } %>

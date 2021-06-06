@@ -1,6 +1,7 @@
 const user  = require('../config/mongoose');
 const User=require('../models/user');
 const Post=require('../models/post');
+const Room=require('../models/room');
 const Topic=require('../models/topic');
 const ResetPassToken=require('../models/resetPassToken');
 const EnableAccessToken=require('../models/enableAccToken');
@@ -30,10 +31,25 @@ module.exports.profile=async function(req,res){
     let posts=await Post.find({
         user:req.params.id
     }).sort('-createdAt');
+    let roomName;
+    let x=Date.parse(req.user.createdAt);
+    let y=Date.parse(user.createdAt);
+    let m=(x<=y);
+    if(m){
+        roomName="chat-Box-"+req.user.id+user.id;
+    }else{
+        roomName="chat-Box-"+user.id+req.user.id;
+    }
+    let room=await Room.find({name:roomName})
+    .populate({
+        path:'messages'
+    });
+    console.log('roooom : ',room[0]);
     return res.render('user_profile',{
         title:"Users's profile",
         profile_user:user,
-        posts:posts
+        posts:posts,
+        room:room[0]
     });
 }
 
