@@ -12,6 +12,8 @@ const comChatSchema=new mongoose.Schema({
     //     type:mongoose.Schema.ObjectId,
     //     ref:'Room'
     // }
+},{
+    timestamps:true
 });
 
 const ComChat=mongoose.model('ComChat',comChatSchema);

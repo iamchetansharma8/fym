@@ -162,7 +162,10 @@ module.exports.homeChat=async function(req,res){
          console.log(room,'ll : room')
          room.save();
          return res.status(200).json({
-            message:"Post Created"
+            message:"Post Created",
+            data:{
+                curChat:curChat.createdAt.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+            }
         });
     }catch(err){
         console.log('Error in posting send message request home',err);

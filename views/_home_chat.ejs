@@ -1,7 +1,7 @@
 <% if(locals.user){%>
         <section class="home-chat-box">
             <section class="chat-heading">
-                <h1>Community Chat</h1>
+                <div><h1>Community Chat</h1></div>
             </section>
             <section class="home-chats">
                 <ul class="home-chat-list">
@@ -25,13 +25,20 @@
                                 </li>
                             <%}%>
                         <%}%>
+                    <%}else{%>
+                        <li class="other-msg">
+                            <span>To begin type anything and send, your 1st message will
+                                serve as confirmation that you want to begin the chat and 
+                                will not be sent
+                            </span>
+                        </li>
                     <%}%>
                     
                 </ul>
             </section>
             <section class="home-chat-form">
                 <input type="text" class="home-chat-input" placeholder="Type your message here">
-                <button id="send-home-msg">Send</button>
+                <button id="send-home-msg"><i class="fas fa-paper-plane"></i></button>
             </section>
         </section>
 <% } %>

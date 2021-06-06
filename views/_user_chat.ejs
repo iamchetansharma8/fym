@@ -10,8 +10,15 @@
     <%}%>
     <%if(a){%>
         <section class="user-chat-box" id="chat-Box-<%=a%>">
-            <section class="chat-heading">
-                <h1><%=profile_user.name%></h1>
+            <section class="chat-heading" id="user-chat-head">
+                <div>
+                    <img class="chat-user-img" src="<%=profile_user.avatar%>" alt=" " width="30">
+                </div>
+                <div><h1>
+                    <%=profile_user.name%> 
+                </h1></div>
+                <div><a id="start-video" href="https://afternoon-wildwood-22066.herokuapp.com/" target="_blank"><i class="fas fa-video"></i></a></div>
+                <!-- <div id="is_online" class="onnline"> <i class="fas fa-circle"></i> online</div> -->
             </section>
             <section class="user-chats">
                 <ul class="user-chat-list">
@@ -24,24 +31,34 @@
                     <%if(room){%>
                         <%for(m of room.messages){%>
                             <%if(m.email==user.email){%>
-                                <li class="self-msg">
+                                <li class="self-msg1">
                                     <span><%=m.message%></span>
-                                    <sub><%=m.email%></sub>
+                                    <!-- <sub><%=m.createdAt%></sub> -->
+                                    <sub><%=m.createdAt.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })%></sub>
+                                    <!-- <sub><%=m.email%></sub> -->
                                 </li>
                             <%}else{%>
-                                <li class="other-msg">
+                                <li class="other-msg1">
                                     <span><%=m.message%></span>
-                                    <sub><%=m.email%></sub>
+                                    <sub><%=m.createdAt.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })%></sub>
+                                    <!-- <sub><%=m.email%></sub> -->
                                 </li>
                             <%}%>
                         <%}%>
+                    <%}else{%>
+                        <li class="other-msg1">
+                            <span>To begin type anything and send, your 1st message will
+                                serve as confirmation that you want to begin the chat and 
+                                will not be sent
+                            </span>
+                        </li>
                     <%}%>
                 </ul>
             </section>
             <section class="user-chat-form">
                 <!-- <form action="/home-msg" method="POST"> -->
                     <input type="text" class="user-chat-input" placeholder="Type your message here" name="home-msg-content">
-                    <button id="send-user-msg">Send</button>
+                    <button id="send-user-msg"><i class="fas fa-paper-plane"></i></button>
                 <!-- </form> -->
             </section>
         </section>

@@ -56,7 +56,6 @@ class ChatEngineUser{
                 });
             }
         });
-
         // receiving event receive_message to broadcast messages over frontend
         self.socket.on('receive_user_message',function(data){
             console.log('user message received, data_msg : ',data.message);
@@ -64,17 +63,23 @@ class ChatEngineUser{
             // creating a new li
             let newMessage=$('<li>');
 
-            let messageType='other-msg';
+            let messageType='other-msg1';
             if(data.user_email==self.userEmail){
-                messageType='self-msg';
+                messageType='self-msg1';
             }
-
+            // console.log('msss',data.mes)
             // appending span and sub to newly created list newMessage
             newMessage.append($('<span>',{
                 'html':data.message
             }));
+            let today = new Date();
+            let hour=today.getHours();
+            let min=today.getMinutes();
+            if(hour<10){hour="0"+hour};
+            if(min<10){min="0"+min};
+            let time1 = hour + ":" + min;
             newMessage.append($('<sub>',{
-                'html':data.user_email
+                'html':time1
             }));
 
             // okay now let's add class messageType to determine style of new list item

@@ -3,12 +3,12 @@
     flex-direction: column;
     width: 25vw;
     bottom: 2vh;
-    height: 35vh;
+    height: 52vh;
     right: 5vw;
     position: fixed;
     border: 1px solid rosybrown;
-    /* background-color: #e5ddd5; */
-    background-image: url("/images/home-chat-back.jpg");
+    background-color: #000000;
+    /* background-image: url("/images/home-chat-back.jpg"); */
     background-position: center;
     background-size: cover;
 }
@@ -24,7 +24,7 @@
     display: flex;
     flex-direction: column;
     overflow-y: auto;
-    height: 31vh;
+    height: 46vh;
     color: #555555;
     font-family: sans-serif;
 }
@@ -40,6 +40,7 @@
     width: fit-content;
     padding: .4rem;
     border-radius: 5%;
+    color: #e2e2e2;
 }
 
 /* .other-msg{
@@ -57,7 +58,7 @@
     border-radius: 10% 25% 25% 10%;
 } */
 .user-chat-form{
-    height: 4vh;
+    height: 6vh;
     width: 100%;
     display: flex;
 }
@@ -68,8 +69,57 @@
     width: 25%;
 }
 #send-user-msg{
-    background-color: #075E54;
+    background-color: #262626;
     color: #ffffff;
+    /* color: #1a58ea; */
     font-size: 1.1rem;
     border: none;
+}
+#start-video{
+    text-decoration: none;
+    color: #ffffff;
+}
+#user-chat-head{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #191919;
+    color: #ffffff;
+    border-bottom: none;
+}
+.chat-user-img{
+    border-radius: 50%;
+}
+.user-chat-input{
+    background-color: #262626;
+    color: #e2e2e2;
+    border: none;
+    font-size: 1.2rem;
+    font-family: sans-serif;
+}
+.user-chat-input:focus-visible{
+    border: none;
+    outline: none;
+}
+
+.other-msg1{
+    /* text-align: left; */
+    /* background-color: #ffffff; */
+    background-color: #262626;
+    /* background-color: #f1f1ef; */
+    /* color: #141415; */
+    margin-left: -3%;
+    margin-right: 15%;
+    /* border-radius: 25% 10% 10% 25%; */
+}
+.self-msg1{
+    /* text-align: right; */
+    /* background-color: #dbf8c6; */
+    background-color: #795cd6;
+    /* background-color: #2284ff; */
+    /* color: #e9f4ff; */
+    margin-left: 15%;
+    margin-right: 5%;
+    /* border-radius: 10% 25% 25% 10%; */
 }

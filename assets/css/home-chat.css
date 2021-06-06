@@ -3,12 +3,13 @@
     flex-direction: column;
     width: 25vw;
     bottom: 2vh;
-    height: 35vh;
+    height: 52vh;
     right: 5vw;
     position: fixed;
     border: 1px solid rosybrown;
-    /* background-color: #e5ddd5; */
-    background-image: url("/images/home-chat-back.jpg");
+    /* background-color: #000000; */
+    background-color: #ffffff;
+    /* background-image: url("/images/home-chat-back.jpg"); */
     background-position: center;
     background-size: cover;
 }
@@ -17,14 +18,20 @@
     flex-direction: column; 
  }  
 .chat-heading{
-    color: #ffffff;
+    /* color: #ffffff; */
+    color: #141415;
+    border-bottom: 1px solid burlywood;
     font-family: sans-serif;
+    /* background-color: #191919; */
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
 } 
 .home-chats{
     display: flex;
     flex-direction: column;
     overflow-y: auto;
-    height: 31vh;
+    height: 46vh;
     color: #555555;
     font-family: sans-serif;
 }
@@ -40,24 +47,31 @@
     width: fit-content;
     padding: .4rem;
     border-radius: 5%;
+    /* color: #e2e2e2; */
 }
 
 .other-msg{
     /* text-align: left; */
-    background-color: #ffffff;
+    /* background-color: #ffffff; */
+    /* background-color: #262626; */
+    background-color: #f1f1ef;
+    color: #141415;
     margin-left: -3%;
     margin-right: 15%;
     /* border-radius: 25% 10% 10% 25%; */
 }
 .self-msg{
     /* text-align: right; */
-    background-color: #dbf8c6;
+    /* background-color: #dbf8c6; */
+    /* background-color: #795cd6; */
+    background-color: #2284ff;
+    color: #e9f4ff;
     margin-left: 15%;
     margin-right: 5%;
     /* border-radius: 10% 25% 25% 10%; */
 }
 .home-chat-form{
-    height: 4vh;
+    height: 6vh;
     width: 100%;
     display: flex;
 }
@@ -68,8 +82,19 @@
     width: 25%;
 }
 #send-home-msg{
-    background-color: #075E54;
-    color: #ffffff;
+    background-color: #ffffff;
+    color: #b327e9;
     font-size: 1.1rem;
     border: none;
+}
+.home-chat-input{
+    background-color: #ffffff;
+    color: #141415;
+    border: none;
+    font-size: 1.2rem;
+    font-family: sans-serif;
+}
+.home-chat-input:focus-visible{
+    border: none;
+    outline: none;
 }
