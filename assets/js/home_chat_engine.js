@@ -66,21 +66,81 @@ class ChatEngine{
             let messageType='other-msg';
             if(data.user_email==self.userEmail){
                 messageType='self-msg';
-            }
-
-            // appending span and sub to newly created list newMessage
+                // appending span and sub to newly created list newMessage
             newMessage.append($('<span>',{
                 'html':data.message
             }));
+            let today = new Date();
+            let hour=today.getHours();
+            let min=today.getMinutes();
+            if(hour<10){hour="0"+hour};
+            if(min<10){min="0"+min};
+            let time1 = hour + ":" + min;
             newMessage.append($('<sub>',{
-                'html':data.user_email
+                'html':time1
             }));
 
             // okay now let's add class messageType to determine style of new list item
             newMessage.addClass(messageType);
-
-            // finally let's just append this newMessage to main list, i.e. .home-chat-list class
             $('.home-chat-list').append(newMessage);
+            }
+
+            // // appending span and sub to newly created list newMessage
+            // newMessage.append($('<span>',{
+            //     'html':data.message
+            // }));
+            // let today = new Date();
+            // let hour=today.getHours();
+            // let min=today.getMinutes();
+            // if(hour<10){hour="0"+hour};
+            // if(min<10){min="0"+min};
+            // let time1 = hour + ":" + min;
+            // newMessage.append($('<sub>',{
+            //     'html':time1
+            // }));
+
+            // // okay now let's add class messageType to determine style of new list item
+            // newMessage.addClass(messageType);
+            console.log('no')
+            console.log(messageType)
+            if(messageType=='other-msg'){
+                console.log('yes')
+                let p=JSON.stringify(data.user_email);
+                let id_sender=p.split("@")[0];
+                id_sender=id_sender.replace(/["]+/g, '');
+                let contactDiv=$('<div>');
+                contactDiv.append($('<div>',{
+                    'html':id_sender
+                }));
+                let contentDiv=$('<div>');
+                contentDiv.append($('<span>',{
+                    'html':data.message
+                }));
+                let today = new Date();
+                let hour=today.getHours();
+                let min=today.getMinutes();
+                if(hour<10){hour="0"+hour};
+                if(min<10){min="0"+min};
+                let time1 = hour + ":" + min;
+                contentDiv.append($('<sub>',{
+                    'html':time1
+                }));
+                contactDiv.addClass('other-msg-user');
+                contentDiv.addClass('other-msg-content');
+                let finalDiv=$('<div>');
+                finalDiv.addClass('other-msg-box');
+                finalDiv.append(contactDiv);
+                finalDiv.append(contentDiv);
+                let finalLi=$('<li>');
+                finalLi.append(finalDiv);
+                finalLi.addClass(messageType);
+                $('.home-chat-list').append(finalLi);
+                // $('.other-msg-box').append(contactDiv);
+                // $('.other-msg-box').append(contentDiv);
+                
+            }
+            // finally let's just append this newMessage to main list, i.e. .home-chat-list class
+            // $('.home-chat-list').append(newMessage);
             $('.home-chat-input').val("");
             // $('.home-chats').scrollTop = $('.home-chats').scrollHeight;
             // $('.home-chats').scrollTop($('.home-chats').height()+ini);

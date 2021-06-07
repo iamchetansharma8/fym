@@ -98,3 +98,12 @@
     border: none;
     outline: none;
 }
+.other-msg-box{
+    display: flex;
+    flex-direction: column;
+}
+.other-msg-user{
+    opacity: 0.75;
+    border-bottom: 1px solid burlywood;
+    font-size: 1rem;
+}
