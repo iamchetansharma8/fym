@@ -23,7 +23,7 @@ const userSchema=new mongoose.Schema({
     },
     avatar:{
         type:String,
-        default:'hh'
+        default:"/images/def.png"
     },
     connections:[{
         type: mongoose.Schema.ObjectId,
@@ -36,6 +36,10 @@ const userSchema=new mongoose.Schema({
     topics:[{
         type:mongoose.Schema.ObjectId,
         ref:'Topic'
+    }],
+    active:[{
+        type:mongoose.Schema.ObjectId,
+        ref:'User'
     }]
 },
 {

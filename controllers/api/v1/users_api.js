@@ -5,7 +5,7 @@ const User=require('../../../models/user');
 // library used to create a json web token
 const jwt=require('jsonwebtoken');
 
-
+const env=require('../../../config/environment');
 
 
 // sign in and create a session
@@ -22,7 +22,7 @@ module.exports.createSession=async function(req,res){
             data:{
                 // assigning token using jsonwebtoken library decrypting it with our key and
                 // setting expire time as well
-                token: jwt.sign(user.toJSON(),process.env.JWT_SECRET_KEY,{expiresIn : '10000000'})
+                token: jwt.sign(user.toJSON(),env.jwt_secret,{expiresIn : '10000000'})
             }
         });
     }catch(err){

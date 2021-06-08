@@ -1,0 +1,18 @@
+<div id="active-chats-container">
+    <div id="active-chats-head">
+        <h1>Active Chats</h1>
+    </div>
+    <div id="active-chats-content">
+        <%if(now_user.active.length==0){%>
+            Currenty, you do not have any active conversation, to begin a conversation simply message a user by visiting their profile
+        <%}%>
+        <ul>
+            <%for(i of now_user.active){%>
+                <li>
+                    <a href="/users/profile/<%=i.id%>"><%=i.name%></a>
+                    <a href="/active-chats/end/<%=i.id%>"><i class="far fa-times-circle"></i> End Chat</a>
+                </li>
+            <%}%>
+        </ul>
+    </div>
+</div>

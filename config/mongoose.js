@@ -1,5 +1,6 @@
 const mongoose=require('mongoose');
-mongoose.connect('mongodb://localhost/fym_db');
+const env=require('../config/environment');
+mongoose.connect(`mongodb://localhost/${env.db}`);
 
 // acquire connection
 const db=mongoose.connection;

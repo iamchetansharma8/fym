@@ -127,6 +127,23 @@ module.exports.homeChat=async function(req,res){
     try{
         console.log('jj',req.body.myData);
         let user=await User.findOne({email:req.body.myData.email});
+        console.log('profile**id',req.body.myData.profile_id);
+        if(req.body.myData.profile_id!=undefined){
+        var is_active=false;
+        for(iter of user.active){
+            if(iter==req.body.myData.profile_id){
+                is_active=true;break;
+            }
+        }
+        if(!is_active){
+            let profile_user_cur=await User.findById(req.body.myData.profile_id);
+            user.active.push(profile_user_cur);
+            user.save();
+            profile_user_cur.active.push(user);
+            profile_user_cur.save();
+            console.log("oooo pushhed");
+        }
+        }
         let room=await Room.findOne({name:req.body.myData.chatroom});
         let room1=await Room.findOne({name:req.body.myData.chatroom})
         .populate({

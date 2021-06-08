@@ -1,5 +1,6 @@
 class ChatEngineUser{
-    constructor(chatBoxId,userEmail){
+    constructor(chatBoxId,userEmail,profileId){
+        this.profileId=profileId;
         this.customBox=chatBoxId;
         this.chatBox=$(`#${chatBoxId}`);
         this.userEmail=userEmail;
@@ -37,7 +38,8 @@ class ChatEngineUser{
             let allData={
                 msg:msg,
                 email:self.userEmail,
-                chatroom:self.customBox
+                chatroom:self.customBox,
+                profile_id:self.profileId
             }
             if(msg!=''){
                 //start

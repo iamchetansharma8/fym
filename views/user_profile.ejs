@@ -47,7 +47,6 @@
             <button type="submit">Unfollow</button>
         <%}else{%>
             <button type="submit">Follow</button>
-            Note : You must follow <%=profile_user.name%> to message them
         <%}%>
     </form>
 <%}%>
@@ -108,7 +107,7 @@
     <%}%>
     <script src="/js/user_chat_engine.js"></script>
     <script>
-        new ChatEngineUser('chat-Box-<%=a%>','<%=locals.user.email%>');
+        new ChatEngineUser('chat-Box-<%=a%>','<%=locals.user.email%>','<%=profile_user.id%>');
     </script>
     
     <script>

@@ -16,6 +16,7 @@ const { model } = require('mongoose');
 
 // rendering user profile page
 module.exports.profile=async function(req,res){
+    try{
     console.log(req.params.id);
     // let user=await User.findById(req.params.id).populate('connections')
     let user=await User.findById(req.params.id)
@@ -51,6 +52,10 @@ module.exports.profile=async function(req,res){
         posts:posts,
         room:room[0]
     });
+}catch(err){
+    console.log('Error in showing profile page',err);
+    return res.redirect('back');
+}
 }
 
 // rendering sign up page

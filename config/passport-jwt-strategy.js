@@ -1,7 +1,7 @@
 const passport=require('passport');
 const JWTStrategy=require('passport-jwt').Strategy;
 const ExtraxtJWT=require('passport-jwt').ExtractJwt;
-
+const env=require('./environment');
 // importing user as we have to find one to authenticate
 const User=require('../models/user');
 
@@ -9,7 +9,7 @@ const User=require('../models/user');
 let opts={
     jwtFromRequest:ExtraxtJWT.fromAuthHeaderAsBearerToken(),
     // secret key : used to encrypt and decrypt
-    secretOrKey:process.env.JWT_SECRET_KEY
+    secretOrKey:env.jwt_secret
 }
 passport.use(new JWTStrategy(opts,function(jwt_payload,done){
     // finding user by id, note that user's info is in jwt_payload

@@ -2,19 +2,9 @@ const nodemailer=require('nodemailer');
 const { relative } = require('path');
 const ejs=require('ejs');
 const path=require('path');
-const { env } = require('process');
-
+const env=require('./environment');
 // defines how the communication is going to happen
-let transporter=nodemailer.createTransport({
-    service:'gmail',
-    host:'smtp.gmail.com',
-    port:'587',
-    secure:false,
-    auth: {
-        user:process.env.NODEMAILER_MAIL_ID,
-        pass:process.env.NODEMAILER_MAIL_PASSWORD
-      },
-});
+let transporter=nodemailer.createTransport(env.smtp);
 
 // used to send an html file from views/mailers as email
 let renderTemplate=(data,relativePath)=>{

@@ -9,6 +9,13 @@
                 <a href="/users/profile/<%=user.id%>"><i class="fas fa-user-tie"></i> <%=user.name%></a>
             </li>
             <li>
+                <%if(user.active.length>0){%>
+                    <a href="/active-chats/show"><i class="fab fa-facebook-messenger"></i> <span>Chats</span> <sub id="new-chat-sub"> <i class="fas fa-circle"></i><%=user.active.length%> </sub></a>
+                <%}else{%>
+                    <a href="/active-chats/show"><i class="fab fa-facebook-messenger"></i> <span>Chats</span> </a>
+                <%}%>
+            </li>
+            <li>
                 <a href="/post/create_page"><i class="fas fa-plus"></i> New Post</a>
             </li>
             <li>

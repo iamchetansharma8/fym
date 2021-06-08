@@ -1,10 +1,11 @@
 const express =require('express');
+const env=require('./config/environment');
+const logger=require('morgan');
 const cookieParser=require('cookie-parser');
 const app=express();
 const port=8000;
 const expressLayouts=require('express-ejs-layouts');
 const db=require('./config/mongoose');
-
 // to show flash messages
 const flash=require('connect-flash');
 // flash messages middleware
@@ -31,10 +32,12 @@ app.use(express.urlencoded());
 app.use(cookieParser());
 
 // tell where to look for static files
-app.use(express.static('./assets'));
+app.use(express.static(env.asset_path));
 
 // for multer files, making path available to the browser
 app.use('/uploads',express.static(__dirname+'/uploads'));
+
+app.use(logger(env.morgan.mode,env.morgan.options));
 
 // use express-ejs-layout
 app.use(expressLayouts);
@@ -50,7 +53,7 @@ app.set('views', './views');
 app.use(session({
     name:'fyn',
     // todo : change the secret before deployment in production mode
-    secret:'randomlysomething',
+    secret:env.session_cookie_key,
     resave: false,
     cookie:{
         // magAge in ms

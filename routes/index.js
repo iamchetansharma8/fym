@@ -15,6 +15,9 @@ router.use('/comment',require('./comment'));
 router.use('/topics',require('./topic'));
 router.use('/likes',require('./like'));
 
+// routing to active chats
+router.use('/active-chats',require('./active'));
+
 // routing to api index
 router.use('/api',require('./api'));
 module.exports=router;
