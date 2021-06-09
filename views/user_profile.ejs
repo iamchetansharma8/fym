@@ -1,97 +1,122 @@
+<div id="profile-page-div">
+
+<div id="profile-page-head">
 <%if(user.id==profile_user.id){%>
     <h1>Your profile</h1>
 <%}else{%>
     <h1><%=profile_user.name%>'s profile</h1>
 <%}%>
-<p>
-    <img src="<%=profile_user.avatar%>" alt="<%=profile_user.name%>" width="180">
-</p>
-<p>
-    <%=profile_user.nfollowers%> followers
-</p>
-<p>
-    Interseted In :
-    <ul>
-        <%for(topic of profile_user.topics){%>
-            <li>
-                <%=topic.name%>
-            </li>
-        <%}%>
-    </ul>
-</p>
-<%if(user.id==profile_user.id){%>
-    <form action="/users/update/<%=profile_user.id%>" enctype="multipart/form-data" method="POST">
-        <input type="text" name="name" placeholder="Your name" value="<%=profile_user.name%>" required>
-        <input type="file" name="avatar" placeholder="Profile picture">
-        <input type="submit" value="Update">
-    </form>
+</div>
+<div id="profile-page-image">
+        <img src="<%=profile_user.avatar%>" alt="<%=profile_user.name%>" width="180">
+</div>
+<div id="profile-followers-count">
     <p>
-        Add topics
-        <form action="/topics/add/<%=profile_user.id%>" method="POST">
-            <input type="text" name="name" placeholder="New topic name">
-            <input type="submit" value="Add Interest">
-        </form>
+        <%=profile_user.nfollowers%> followers
     </p>
-    <p><%=profile_user.email%></p>
-<%}else{%>
-    <p><%=profile_user.name%></p>
-    <p><%=profile_user.email%></p>
-    <form action="/manage-connection/<%=profile_user.id%>" method="POST">
-        <%let allconn=false%>
-        <%for(connection of profile_user.connections){%>
-            <%if(connection.following.id==profile_user.id){%>
-                <%allconn=true%>
-            <%}%>
-        <%}%>
-        <%if(allconn){%>
-            <button type="submit">Unfollow</button>
+</div>
+<div id="profile-interested-in">
+        <h3>Interseted In :</h3>
+        
+        <%if(profile_user.topics.length==0){%>
+            Here topics user has added as his interest will be shown
         <%}else{%>
-            <button type="submit">Follow</button>
+            <ul>
+                <%for(topic of profile_user.topics){%>
+                    <li class="gold-color">
+                        <%=topic.name%>
+                    </li>
+                <%}%>
+            </ul>
         <%}%>
-    </form>
+</div>
+<%if(user.id==profile_user.id){%>
+    <div id="profile-update">
+        <form action="/users/update/<%=profile_user.id%>" enctype="multipart/form-data" method="POST">
+            <input class="profile-name-change" type="text" name="name" placeholder="Your name" value="<%=profile_user.name%>" required>
+            <input class="custom-file-input" type="file" name="avatar" placeholder="Profile picture">
+            <input class="follow-unfollow" type="submit" value="Update">
+        </form>
+    </div>
+    <div id="profile-interests-form">
+        <p>
+            <h3>Add topics</h3>
+            <form action="/topics/add/<%=profile_user.id%>" method="POST">
+                <input class="profile-name-change" type="text" name="name" placeholder="New topic name">
+                <input class="follow-unfollow" type="submit" value="Add Interest">
+            </form>
+        </p>
+    </div>
+    <div id="profile-email">
+        <p><%=profile_user.email%></p>
+    </div>
+<%}else{%>
+    <div id="profile-user-info">
+        <p><%=profile_user.name%></p>
+        <p><%=profile_user.email%></p>
+    </div>
+    <div id="profile-connections-form">
+        <form action="/manage-connection/<%=profile_user.id%>" method="POST">
+            <%let allconn=false%>
+            <%for(connection of profile_user.connections){%>
+                <%if(connection.following.id==profile_user.id){%>
+                    <%allconn=true%>
+                <%}%>
+            <%}%>
+            <%if(allconn){%>
+                <button class="follow-unfollow" type="submit">Unfollow</button>
+            <%}else{%>
+                <button class="follow-unfollow" type="submit">Follow</button>
+            <%}%>
+        </form>
+    </div>
 <%}%>
-<p>
-    All followers
-    <ul>
-        <%for(connection of profile_user.connections){%>
-            <%if(connection.following.id==profile_user.id){%>
-                <li><a href="/users/profile/<%=connection.follower.id%>"><%=connection.follower.name%></a></li>
-            <%}%>
-        <%}%>
-    </ul>
-</p>
-<p>
-    Following
-    <ul>
-        <%for(connection of profile_user.connections){%>
-            <%if(connection.follower.id==profile_user.id){%>
-                <li><a href="/users/profile/<%=connection.following.id%>"><%=connection.following.name%></a></li>
-            <%}%>
-        <%}%>
-    </ul>
-</p>
-<!-- connection.follower==profile_user.id|| -->
-<%if(posts.length>0){%>
-    <p>
-        Posts by <%=profile_user.name%>
+<div class="profile-all-followers">
+        <h3>All followers</h3>
         <ul>
-            <% for(post of posts){%>
-                <li>
-                    <h1><%=post.title%></h1>
-                    
-                    <p>Published On : <%=post.createdAt.toLocaleDateString()%></p>
-                    <p><%=post.description%></p>
-                    <button><a href="/post/read_full/<%=post.id%>">Read Complete Post</a></button>
-                    <%if(locals.user&&locals.user.id==post.user){%>
-                        <button><a href="/post/destroy/<%=post.id%>">Delete Post</a></button>
-                        <button><a href="/post/edit/<%=post.id%>">Edit Post</a></button>
-                    <%}%>
-                </li>
+            <%for(connection of profile_user.connections){%>
+                <%if(connection.following.id==profile_user.id){%>
+                    <li><a href="/users/profile/<%=connection.follower.id%>"><%=connection.follower.name%></a></li>
+                <%}%>
             <%}%>
         </ul>
-    </p>
+</div>
+<div class="profile-all-followers">
+        <h3>Following</h3>
+        <ul>
+            <%for(connection of profile_user.connections){%>
+                <%if(connection.follower.id==profile_user.id){%>
+                    <li><a href="/users/profile/<%=connection.following.id%>"><%=connection.following.name%></a></li>
+                <%}%>
+            <%}%>
+        </ul>
+</div>
+<!-- connection.follower==profile_user.id|| -->
+<%if(posts.length>0){%>
+    <div id="profile-user-posts">
+        <p>
+            Posts by <%=profile_user.name%>
+            <ul>
+                <% for(post of posts){%>
+                    <li>
+                        <h1><%=post.title%></h1>
+                        
+                        <p>Published On : <%=post.createdAt.toLocaleDateString()%></p>
+                        <p><%=post.description%></p>
+                        <button><a href="/post/read_full/<%=post.id%>">Read Complete Post</a></button>
+                        <%if(locals.user&&locals.user.id==post.user){%>
+                            <button><a href="/post/destroy/<%=post.id%>">Delete Post</a></button>
+                            <button><a href="/post/edit/<%=post.id%>">Edit Post</a></button>
+                        <%}%>
+                    </li>
+                <%}%>
+            </ul>
+        </p>
+    </div>
 <%}else{%>
-    Here your posts will be shown. As of now you have'nt posted anything
+    <div id="profile-posts-unavailable-info">
+        Here user's posts will be shown. As of now he has not posted anything
+    </div>
 <%}%>
 <%- include('_user_chat') -%>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
@@ -115,3 +140,5 @@
     </script>
     
 <%}%>
+
+</div>
