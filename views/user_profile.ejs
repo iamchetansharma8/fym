@@ -130,7 +130,7 @@
     <%}else{%>
         <%a=profile_user.id+user.id%>
     <%}%>
-    <script src="/js/user_chat_engine.js"></script>
+    <script src="<%=assetPath('js/user_chat_engine.js')%>"></script>
     <script>
         new ChatEngineUser('chat-Box-<%=a%>','<%=locals.user.email%>','<%=profile_user.id%>');
     </script>

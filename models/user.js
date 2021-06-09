@@ -23,7 +23,8 @@ const userSchema=new mongoose.Schema({
     },
     avatar:{
         type:String,
-        default:"/images/def.png"
+        default:"https://image.flaticon.com/icons/png/512/2922/2922510.png"
+        // default:"assetPath('images/def.png')"
     },
     connections:[{
         type: mongoose.Schema.ObjectId,
