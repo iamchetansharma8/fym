@@ -99,20 +99,38 @@
 }
 @media(max-width: 1000px){
     .sign-up-main h1{
-        font-size: 2.8rem;
+        font-size: 4rem;
     }
     .sign-up-img{
         width: 0vw;
     }
     .sign-up-main{
         width: 100vw;
+        font-size: 2.5rem;
     }
     .sign-up-inputs input{
         width: 30vw;
-        font-size: 1.5rem;
+        font-size: 2.5rem;
     }
     .sign-up-inputs label{
         width: 25vw;
-        font-size: 1.5rem;
+        font-size: 2.5rem;
+    }
+    .create-acc-btn{
+        padding: 1.2rem;
+    }
+    .create-acc-btn input{
+        font-size: 2.5rem;
+    }
+    .google-btn{
+        font-size: 2.2rem;
+        padding: 1.5rem;
+    }
+    .forgot-text{
+        font-size: 2.2rem;
+    }
+    #forgottt-formm{
+        display: flex;
+        flex-direction: column;
     }
 }

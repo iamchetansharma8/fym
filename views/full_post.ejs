@@ -43,7 +43,7 @@
 </div>
 
 <div class="post-comments">
-    <div>
+    <div id="post-full-cmnts">
         <form action="/comment/create" id="create-comment-form-<%=cur_post._id%>" method="POST">
             <textarea name="content" id="" cols="80" rows="4" placeholder="Add you comment here...." required></textarea>
             <!-- <input type="textarea" name="content" class="comment-text" placeholder="Add you comment here...." required> -->
@@ -67,7 +67,7 @@
                             <% if(locals.user){%>
                                 <%=comment.likes.length%> likes
                                 <form action="/likes/toggle/?id=<%=comment._id%>&type=Comment" method="POST">
-                                    <button class="hover-pointer" style="background-color: inherit; border: none; color:#0b90c4;" type="submit"><i style="font-size: 2rem;" class="fas fa-thumbs-up"></i></button>
+                                    <button id="likee-cmnt" class="hover-pointer" style="background-color: inherit; border: none; color:#0b90c4;" type="submit"><i style="font-size: 2rem;" class="fas fa-thumbs-up"></i></button>
                                 </form>
                             <%}else{%>
                                 <%=comment.likes.length%>Likes

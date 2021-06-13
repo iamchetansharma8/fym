@@ -1,6 +1,9 @@
 <header>
-    <span id="fym-logo"><h1>fym</h1></span>
-    <ul>
+    <div id="fym-mob-head">
+        <span id="fym-logo"><h1>fym</h1></span>
+        <span id="fym-drop" onclick="myDropDown()"><i class="fas fa-bars"></i></span>
+    </div>
+    <ul id="get-ham">
         <% if(locals.user){%>
             <li>
                 <a href="/"><i class="fas fa-home"></i> Home</a>
@@ -46,3 +49,15 @@
         <%}%>
     </ul>
 </header>
+<script>
+    function myDropDown(){
+        let hamm=document.getElementById('get-ham');
+        if(hamm.style.visibility=="visible"){
+            hamm.style.visibility="collapse";
+            hamm.style.height="0px"
+        }else{
+            hamm.style.visibility="visible";
+            hamm.style.height="100%";
+        }
+    }
+</script>

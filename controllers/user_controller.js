@@ -73,7 +73,7 @@ module.exports.signUp=function(req,res){
 module.exports.signIn=function(req,res){
     // if user is already signed in no need to show signIn page
     if(req.isAuthenticated()){
-        return res.redirect('/users/profile/');
+        return res.redirect('/users/profile/req.user.id');
     }
     return res.render('user_sign_in',{
         title:"fyn | Sign In"

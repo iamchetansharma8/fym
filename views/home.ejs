@@ -1,16 +1,80 @@
-<link rel="stylesheet" href="<%=assetPath('css/home.css')%>">
-<br><br>
+
+<!-- <br><br> -->
 
 <!-- later will convert to followers and suggestion kind -->
+<div id="home-main-container">
+    <div id="home-about-info">
+        <div id="home-about-full-form">
+            <div class="home-about-full-form-p1">
+                FIND YOUR MENTOR
+            </div>
+            <div class="home-about-full-form-p2">
+                <p>
+                    <i class="fas fa-search"></i> Find a user by name or subject
+                </p>
+            </div>
+            <div class="home-about-full-form-p2">
+                <p>
+                    <i class="fas fa-comments"></i> Chat one to one
+                </p>
+            </div>
+            <div class="home-about-full-form-p2">
+                <p>
+                    <i class="fas fa-blog"></i> Post your experiences
+                </p>
+            </div>
+            <div class="home-about-full-form-p2">
+                <p>
+                    <i class="fas fa-at"></i> Follow users to receive email notifications about their activity
+                </p>
+            </div>
+        </div>
+        <div id="home-about-image">
+            <img src="<%=assetPath('images/home-bout.svg')%>" alt="">
+
+        </div>
+    </div>
+    <div id="home-about-and-chat-div">
+        <% if(locals.user){%>
+        <div id="home-about-and-chat-div-box">
+            <%- include('_home_chat') -%>
+        </div>
+        <%}else{%>
+            <div id="home-about-and-unsigned">
+                <img src="<%=assetPath('images/idea.svg')%>" alt="">
+            </div>
+        <%}%>
+        <div id="home-about-and-chat-div-img">
+            <div class="home-about-full-form-p1">
+                <i class="far fa-lightbulb"></i> About
+            </div>
+            <div class="home-about-full-form-p3">
+                <p>
+                    FYM is made to establish a communication between techies.
+                    Just list the subjects of your interest on your profile section
+                    so that others could find you and follow others who have common 
+                    interests as of your's. Now you can chat one to one with other people
+                    about any issues you're facing in your project and solve them with the help 
+                    of others.
+                </p>
+            </div>
+            <div class="home-about-full-form-p3">
+                <p>
+                    For any doubts and development ideas about the platform you can 
+                    discuss in community chat
+                </p>
+            </div>
+        </div>
+    </div>
 <div id="all-users">
     <div id="all-users-search">
         <div id="all-users-search-form">
             <div id="find-by-name">
                 <form action="/" method="GET">
                     <div class="user-search-inputs">
-                        <div id="u-search-input">
-                            <label for="search">Search User by name</label>
-                            <input type="text" name="namesearch" placeholder="find by name">
+                        <div class="u-search-input">
+                            <label for="search"><i class="fas fa-search"></i> Search User by name</label>
+                            <input type="text" name="namesearch" placeholder="Find by name">
                         </div>
                         <div class="post-search-btn-div">
                             <input class="search-user-btn" type="submit" value="Search User">
@@ -21,9 +85,9 @@
             <div id="find-by-topic">
                 <form action="/" method="GET">
                     <div class="user-search-inputs">
-                        <div id="u-search-input">
-                            <label for="search">Search User by topics</label>
-                            <input type="text" name="topicsearch" placeholder="find by topic">
+                        <div class="u-search-input">
+                            <label for="search"><i class="fas fa-search"></i> Search User by topics</label>
+                            <input type="text" name="topicsearch" placeholder="Find by topic">
                         </div>
                         <div class="post-search-btn-div">
                             <input class="search-user-btn" type="submit" value="Search User">
@@ -33,74 +97,111 @@
             </div>
         </div>
     </div>
-    <div>
-        <%if(searched==false){%>
+    
+</div>
+<div id="all-users-list">
+    <%if(searched==false){%>
+        <div>
             <h4>All Users</h4>
-        <% for(u of all_users){%>
-            <p>
-                <div class="home-user-details">
-                    <div>
-                        <img src="<%=u.avatar%>" alt="<%=u.name%>" width="80">
-                    </div>
-                    <div>
-                        <%if(locals.user&&user.id==u.id){%>
-                            <a href="/users/profile/<%=u.id%>"><%=u.name%>(You)</a>
-                        <%}else{%>
-                            <a href="/users/profile/<%=u.id%>"><%=u.name%></a>
-                        <%}%>
-                    </div>
+        </div>
+        <div class="home-alll-users">
+    <% for(u of all_users){%>
+            <div class="home-user-details">
+                <div class="home-user-details-img">
+                    <img src="<%=u.avatar%>" alt="<%=u.name%>" width="80">
                 </div>
-            </p>
-        <%}%>
-        <%}else if(by_name){%>
+                <div class="user-ind-details">
+                    <%if(locals.user&&user.id==u.id){%>
+                        <div class="user-ind-details-name">
+                            <a href="/users/profile/<%=u.id%>"><%=u.name%>(You)</a>
+                        </div>
+                        <div>
+                            <%=u.nfollowers%> followers
+                        </div>
+                    <%}else{%>
+                        <div class="user-ind-details-name">
+                            <a href="/users/profile/<%=u.id%>"><%=u.name%></a>
+                        </div>
+                        <div>
+                            <%=u.nfollowers%> followers
+                        </div>
+                    <%}%>
+                </div>
+            </div>
+    <%}%>
+        </div>
+    <%}else if(by_name){%>
+        <div>
             <h4>Search Results : </h4>
-            <%if(noMatch){%>
-                <%=noMatch%>
-            <%}else{%>
-                <% for(u of all_users){%>
-                    <p>
+        </div>
+        <%if(noMatch){%>
+            <%=noMatch%>
+        <%}else{%>
+            <div class="home-user-details">
+            <% for(u of all_users){%>
+                    <div class="home-user-details">
+                        <div class="home-user-details-img">
+                            <img src="<%=u.avatar%>" alt="<%=u.name%>" width="80">
+                        </div>
+                        <div class="user-ind-details">
+                            <%if(locals.user&&user.id==u.id){%>
+                                <div class="user-ind-details-name">
+                                    <a href="/users/profile/<%=u.id%>"><%=u.name%>(You)</a>
+                                </div>
+                                <div>
+                                    <%=u.nfollowers%> followers
+                                </div>
+                            <%}else{%>
+                                <div class="user-ind-details-name">
+                                    <a href="/users/profile/<%=u.id%>"><%=u.name%></a>
+                                </div>
+                                <div>
+                                    <%=u.nfollowers%> followers
+                                </div>
+                            <%}%>
+                        </div>
+                    </div>
+            <%}%>
+            </div>
+        <%}%>
+    <%}else{%>
+        <div>
+            <h4>Search Results : </h4>
+        </div>
+        <%if(noMatch){%>
+            <%=noMatch%>
+        <%}else{%>
+            <div class="home-user-details">
+            <%for(cur_topic of all_topics){%>
+                <% for(u of cur_topic.users){%>
                         <div class="home-user-details">
-                            <div>
+                            <div class="home-user-details-img">
                                 <img src="<%=u.avatar%>" alt="<%=u.name%>" width="80">
                             </div>
-                            <div>
+                            <div class="user-ind-details">
                                 <%if(locals.user&&user.id==u.id){%>
-                                    <a href="/users/profile/<%=u.id%>"><%=u.name%>(You)</a>
+                                    <div class="user-ind-details-name">
+                                        <a href="/users/profile/<%=u.id%>"><%=u.name%>(You)</a>
+                                    </div>
+                                    <div>
+                                        <%=u.nfollowers%> followers
+                                    </div>
                                 <%}else{%>
-                                    <a href="/users/profile/<%=u.id%>"><%=u.name%></a>
+                                    <div class="user-ind-details-name">
+                                        <a href="/users/profile/<%=u.id%>"><%=u.name%></a>
+                                    </div>
+                                    <div>
+                                        <%=u.nfollowers%> followers
+                                    </div>
                                 <%}%>
                             </div>
                         </div>
-                    </p>
                 <%}%>
             <%}%>
-        <%}else{%>
-            <h4>Search Results : </h4>
-            <%if(noMatch){%>
-                <%=noMatch%>
-            <%}else{%>
-                <%for(cur_topic of all_topics){%>
-                    <% for(u of cur_topic.users){%>
-                        <p>
-                            <div class="home-user-details">
-                                <div>
-                                    <img src="<%=u.avatar%>" alt="<%=u.name%>" width="80">
-                                </div>
-                                <div>
-                                    <%if(locals.user&&user.id==u.id){%>
-                                        <a href="/users/profile/<%=u.id%>"><%=u.name%>(You)</a>
-                                    <%}else{%>
-                                        <a href="/users/profile/<%=u.id%>"><%=u.name%></a>
-                                    <%}%>
-                                </div>
-                            </div>
-                        </p>
-                    <%}%>
-                <%}%>
-            <%}%>
+            </div>
         <%}%>
-    </div>
-    <%- include('_home_chat') -%>
+    <%}%>
+</div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
 <%if(locals.user){%>

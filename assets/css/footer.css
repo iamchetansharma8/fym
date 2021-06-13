@@ -1,9 +1,64 @@
-#foot-temp{
-    background-color:black;
-    color: blanchedalmond;
-}
-footer{
+#foot-main{
+    /* background-color:#171e26; */
+    /* color: blanchedalmond; */
     margin: 0;
-    position: absolute;
+    display: flex;
+    width: 100vw;
+}
+#footer-content{
+    display: flex;
+    /* flex-direction: column; */
+}
+footer {
+    /* margin-top: 10vh; */
+    display: flex;
+    align-items: center;
     bottom: 0;
+    background-color: #171e26;
+    color: #fffbef;
+    /* position: fixed; */
+    width: 100%;
+    font-family: sans-serif; 
+}
+#developer-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50vw;
+}
+#repo-link{
+    width: 50vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.remove-footer-deafult-styles{
+    text-decoration: none;
+    color: #7fff00;
+}
+.remove-footer-deafult-styles:hover{
+    color: tomato;
+}
+#footer-copyright{
+    margin-top: 2vh;
+    display: flex;
+    justify-content: center;
+    margin-bottom: .5rem;
+}
+#developer-info div{
+    margin: .3rem 0 .3rem 0;
+}
+@media(max-width: 1000px){
+    footer{
+        margin-top: 2vh;
+        font-size: 2rem;
+        padding-top: 1rem;
+    }
+    #footer-content {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+    }
 }

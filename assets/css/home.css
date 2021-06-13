@@ -1,5 +1,220 @@
 .home-user-details{
+    /* height: 10vh;
+    width: 20vw; */
     display: flex;
     flex-direction: row;
     align-items: center;
+}
+.home-user-details-img{
+    padding: 1rem;
+}
+.home-user-details-img img{
+    border-radius: 50%;
+}
+.user-ind-details-name{
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+.user-ind-details-name a{
+    text-decoration: none;
+    color: #0348ff;
+}
+.user-ind-details-name a:hover{
+    color: tomato;
+}
+.home-alll-users{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+#home-main-container{
+    display: flex;
+    flex-direction: column;
+}
+#home-about-info{
+    height: 100vh;
+    display: flex;
+}
+#home-about-image{
+    width: 40vw;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+#home-about-image img{
+    width: 100%;
+}
+#home-about-full-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60vw;
+    height: 100%;
+    font-family: sans-serif;
+    justify-content: center;
+}
+.home-about-full-form-p1{
+    padding: 2rem;
+    color: #031b4e;
+    font-size: 3rem;
+}
+.home-about-full-form-p2{
+    font-size: 1.5rem;
+    color: #031b4e;
+}
+.home-about-full-form-p3{
+    font-family: sans-serif;
+    font-size: 1.1rem;
+    padding-right: 2rem;
+    padding-left: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    background-color: #f1f1ef;
+    color: #031b4e;
+    margin-bottom: 5vh;
+}
+.home-about-full-form-p2 p i{
+    font-size: 1.5rem;
+    color: #0348ff;
+}
+#all-users{
+    display: flex;
+    justify-content: center;
+    min-height: 40vh;
+    background-color: #f1f1ef;
+    font-family: sans-serif;
+}
+#all-users-search-form{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+#all-users-search{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+#all-users-list{
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: sans-serif;
+}
+#home-about-and-chat-div{
+    display: flex;
+    min-height: 90vh;
+}
+#home-about-and-chat-div-img{
+    width: 50vw;
+    margin-right: 10vw;
+}
+#home-about-and-chat-div-box{
+    width: 40vw;
+    display: flex;
+    justify-content: center;
+}
+#home-about-and-unsigned{
+    width: 40vw;
+    display: flex;
+    justify-content: center;
+    padding: 2.5rem;
+    align-items: center;
+}
+.user-search-inputs{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    font-size: 1.2rem;
+}
+.u-search-input input{
+    border: none;
+    font-size: 1.2rem;
+    color: #031b4e;
+}
+.u-search-input input:focus{
+    border: none;
+}
+.search-user-btn{
+    color: #f1f1ef;
+    background-color: #0348ff;
+    padding: .6rem;
+    font-size: 1rem;
+    border: none;
+    font-weight: bold;
+}
+.search-user-btn:hover{
+    cursor: pointer;
+    background-color:white;
+    color: #031b4e;
+}
+@media(max-width: 1000px){
+    .home-user-details{
+        font-size: 1.8rem;
+    }
+    #all-users-list div h4{
+        font-size: 2.2rem;
+    }
+    #all-users{
+        min-height: 20vh;
+    }
+    #all-users-search-form{
+        flex-direction: column;
+    }
+    .user-search-inputs{
+        align-items: center;
+        margin-bottom: 3rem;
+        font-size: 1.8rem;
+    }
+    .u-search-input input {
+        font-size: 1.5rem;
+    }
+    .search-user-btn{
+        font-size: 1.5rem;
+    }
+    #home-about-and-chat-div{
+        min-height: 20vh;
+        flex-direction: column;
+    }
+    #home-about-and-unsigned{
+        width: 0;
+        padding: 0;
+    }
+    #home-about-full-form{
+        width: 100vw;
+    }
+    #home-about-and-chat-div-img {
+        width: 100vw;
+        margin-right: 0vw;
+    }
+    .home-about-full-form-p1{
+        padding-top: 5rem;
+        font-size: 4rem;
+        text-align: center;
+    }
+    .home-about-full-form-p2{
+        font-size: 2rem;
+    }
+    .home-about-full-form-p3{
+        font-size: .85rem;
+        padding-right: 3rem;
+        padding-left: 3rem;
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+    }
+    #home-about-info{
+        height: fit-content;
+    }
+    #home-about-image{
+        width: 0;
+    }
+    #home-about-and-chat-div-box{
+        width: 100vw;
+        margin-bottom: 8rem;
+        margin-top: 8rem;
+    }
 }

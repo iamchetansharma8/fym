@@ -9,8 +9,8 @@
         <ul>
             <%for(i of now_user.active){%>
                 <li>
-                    <a href="/users/profile/<%=i.id%>"><%=i.name%></a>
-                    <a href="/active-chats/end/<%=i.id%>"><i class="far fa-times-circle"></i> End Chat</a>
+                    <a class="active-user-namee" href="/users/profile/<%=i.id%>"><%=i.name%></a> &nbsp; &nbsp;
+                    <a class="active-chat-endee" href="/active-chats/end/<%=i.id%>"><i class="far fa-times-circle"></i> End Chat</a>
                 </li>
             <%}%>
         </ul>

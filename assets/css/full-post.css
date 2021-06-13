@@ -30,6 +30,7 @@
     background-color: #e6e8ec;
     color: #202020;
     font-size: 1.8rem;
+    font-family: sans-serif;
     justify-content: center;
 }
 .post-main-body{
@@ -92,4 +93,42 @@
     text-decoration: none;
     color: white;
     font-family: sans-serif;
+}
+
+@media(max-width: 1000px){
+    .post-main-head{
+        height: 15vh;
+    }
+    .post-main-desc{
+        padding: 1rem;
+        font-size: 1.3rem;
+    }
+    .post-main-body{
+        padding: 1vh 6vw 1vh 6vw;
+    }
+    .post-main-body img{
+        width: 90vw;
+        height: unset;
+    }
+    .post-main-body p{
+        margin-top: unset;
+        margin-bottom: unset;
+    }
+    #post-full-cmnts form{
+        display: flex;
+        flex-direction: column;
+    }
+    #post-full-cmnts form input{
+        font-size: 1rem;
+    }
+    #post-comments-list{
+        font-size: 2rem;
+    }
+    .post-comment-delete{
+        font-size: 1.8rem;
+        padding: 1rem;
+    }
+    #likee-cmnt i{
+        font-size: 4rem !important;
+    }
 }

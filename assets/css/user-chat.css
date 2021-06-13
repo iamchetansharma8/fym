@@ -130,3 +130,41 @@
 #profile-page-image img:hover{
 	box-shadow: 0rem 0rem 0.375rem 0.25rem rgba(230,196,196,0.3);
 }
+@media(max-width: 1000px){
+    .user-chat-box{
+        position: unset;
+        width: 100vw;
+        height: 100vh;
+        margin-top: 8vh;
+    }
+    .chat-user-img{
+        width: 100px;
+    }
+    #user-chat-head{
+        font-size: 3rem;
+    }
+    .user-chats{
+        height: 90vh;
+    }
+    .user-chat-list li{
+        font-size: 3.2rem;
+    }
+    .user-chat-form{
+        height: 10vh;
+    }
+    .user-chat-input{
+        font-size: 3.8rem;
+    }
+    #send-user-msg{
+        font-size: 3.8rem;
+    }
+    .profile-name-change{
+        font-size: 2.2rem !important;
+    }
+    .custom-file-input{
+        font-size: 3rem;
+    }
+    .custom-file-input::before{
+        font-size: 2rem !important;
+    }
+}

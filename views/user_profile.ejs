@@ -103,10 +103,10 @@
                         
                         <p>Published On : <%=post.createdAt.toLocaleDateString()%></p>
                         <p><%=post.description%></p>
-                        <button><a href="/post/read_full/<%=post.id%>">Read Complete Post</a></button>
+                        <button id="read-complete" class="all-posts-btns"><a href="/post/read_full/<%=post.id%>">Read Complete Post</a></button>
                         <%if(locals.user&&locals.user.id==post.user){%>
-                            <button><a href="/post/destroy/<%=post.id%>">Delete Post</a></button>
-                            <button><a href="/post/edit/<%=post.id%>">Edit Post</a></button>
+                            <button id="destroy-btn" class="all-posts-btns"><a href="/post/destroy/<%=post.id%>">Delete Post</a></button>
+                            <button id="edit-btn" class="all-posts-btns"><a href="/post/edit/<%=post.id%>">Edit Post</a></button>
                         <%}%>
                     </li>
                 <%}%>

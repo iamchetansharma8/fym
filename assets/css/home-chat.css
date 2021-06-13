@@ -1,11 +1,11 @@
 .home-chat-box{
     display: flex;
     flex-direction: column;
-    width: 25vw;
+    width: 27vw;
     bottom: 2vh;
-    height: 52vh;
+    height: 61vh;
     right: 5vw;
-    position: fixed;
+    /* position: fixed; */
     border: 1px solid rosybrown;
     /* background-color: #000000; */
     background-color: #ffffff;
@@ -31,7 +31,7 @@
     display: flex;
     flex-direction: column;
     overflow-y: auto;
-    height: 46vh;
+    height: 55vh;
     color: #555555;
     font-family: sans-serif;
 }
@@ -106,4 +106,31 @@
     opacity: 0.75;
     border-bottom: 1px solid burlywood;
     font-size: 1rem;
+}
+@media(max-width: 1000px){
+    .home-chat-box{
+        width: 98vw;
+        height: 90vh;
+    }
+    .home-chats{
+        height: 80vh;
+    }
+    .chat-heading{
+        font-size: 2.1rem;
+    }
+    .home-chat-list li{
+        font-size: 2.8rem;
+    }
+    .other-msg-user{
+        font-size: 2.5rem;
+    }
+    .home-chat-form{
+        height: 10vh;
+    }
+    .home-chat-input{
+        font-size: 3.2rem;
+    }
+    #send-home-msg{
+        font-size: 3.2rem;
+    }
 }

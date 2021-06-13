@@ -12,7 +12,7 @@ module.exports.home=function(req,res){
         User.find({name:regex},function(err,users){
             if(err){
                 console.log(err);
-            }else{ //hh
+            }else{
                 if(users.length < 1) {
                     noMatch = "No user matched that query, please try again.";
                 }
@@ -31,15 +31,7 @@ module.exports.home=function(req,res){
                             room:room[0]
                         });
                     })
-                // return res.render('home',{
-                //     title:'Find User',
-                //     all_users:users,
-                //     noMatch: noMatch,
-                //     searched:searched,
-                //     by_name:by_name,
-                //     by_topic:by_topic
-                // });
-            } //hh
+            }
         });
     }
     else if(req.query.topicsearch){
@@ -69,14 +61,6 @@ module.exports.home=function(req,res){
                             room:room[0]
                         });
                     });
-                // return res.render('home',{
-                //     title:'Find User',
-                //     all_topics:topics,
-                //     noMatch: noMatch,
-                //     searched:searched,
-                //     by_name:by_name,
-                //     by_topic:by_topic
-                // });
             });
         }
         });
@@ -88,14 +72,6 @@ module.exports.home=function(req,res){
                 path:'messages'
             })
             .exec(function(err,room){
-                // if(!room){
-                //     Room.create({name:'fymroom'},function(err,room2){
-                //         console.log('room created : ',room2);
-                //         room=room2;
-                //     });
-                // }
-                // console.log('room::',room[0]);
-                // console.log('mess:',room[0].messages[0].message)
                 return res.render('home',{
                     title:'Home',
                     all_users:users,
@@ -104,21 +80,6 @@ module.exports.home=function(req,res){
                     room:room[0]
                 });
             });
-            // ComChat.find({},function(err,all_msgs){
-            //     return res.render('home',{
-            //         title:'Home',
-            //         all_users:users,
-            //         noMatch: noMatch,
-            //         searched:searched,
-            //         all_com_msgs:all_msgs
-            //     });
-            // })
-            // return res.render('home',{
-            //     title:'Home',
-            //     all_users:users,
-            //     noMatch: noMatch,
-            //     searched:searched
-            // });
         });
     }
 }

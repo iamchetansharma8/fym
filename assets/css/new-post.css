@@ -57,3 +57,23 @@
     font-size: 1.6rem;
     border: none;
 }
+#new-post-btn button:hover{
+    background-color: #f1f1ef;
+    color: #031b4e;
+    cursor: pointer;
+}
+
+@media(max-width: 1000px){
+    #new-post-content input{
+        font-size: 3.5rem;
+    }
+    #new-post-content label{
+        font-size: 3rem;
+    }
+    #new-post-content textarea{
+        font-size: 3.5rem;
+    }
+    #new-post-btn button{
+        font-size: 3.6rem;
+    }
+}

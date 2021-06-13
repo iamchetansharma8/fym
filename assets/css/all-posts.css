@@ -1,12 +1,13 @@
 #all-posts-container{
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
 }
 #all-posts-search{
     display: flex;
     justify-content: center;
     align-items: center;
-
+    font-family: sans-serif;
 }
 .post-search-btn-div{
     margin-top: 1rem;
@@ -88,4 +89,31 @@
 .all-posts-btns a{
     color: white;
     text-decoration: none;
+}
+
+@media(max-width: 1000px){
+    #search-input{
+        font-size: 2.4rem;
+    }
+    #search-input input{
+        font-size: 2.4rem;
+    }
+    #search-post-btn{
+        font-size: 2rem;
+        padding: 1.5rem
+    }
+    #all-posts-main{
+        width: 100vw;
+        font-size: 2.5rem;
+    }
+    .individual-post{
+        width: 80vw;
+        font-size: 2rem;
+    }
+    .all-posts-btns{
+        font-size: 2.4rem;
+    }
+    .individ-post-btns button{
+        font-size: 2rem;
+    }
 }
