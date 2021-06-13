@@ -62,7 +62,7 @@ module.exports.profile=async function(req,res){
 module.exports.signUp=function(req,res){
     // if user is already signed in no need to show signup page
     if(req.isAuthenticated()){
-        return res.redirect('/users/profile/');
+        return res.redirect('/');
     }
     return res.render('user_sign_up',{
         title:"fyn | Sign Up"
@@ -85,7 +85,7 @@ module.exports.resetPasswordPage=async function(req,res){
     try{
         // if user is already signed in no need to proceed further
         if(req.isAuthenticated()){
-            return res.redirect('/users/profile/');
+            return res.redirect('/');
         }
         // console.log('readme',req.params.token);
         let cur_user_token=await ResetPassToken.findOne({
@@ -113,7 +113,7 @@ module.exports.verifyEmailPage=async function(req,res){
     try{
         // if user is already signed in no need to proceed further
         if(req.isAuthenticated()){
-            return res.redirect('/users/profile/');
+            return res.redirect('/');
         }
         // console.log('readme',req.params.token);
         let cur_user_token=await EnableAccessToken.findOne({
@@ -141,7 +141,7 @@ module.exports.finalReset=async function(req,res){
     try{
         // if user is already signed in no need to proceed further
         if(req.isAuthenticated()){
-            return res.redirect('/users/profile/');
+            return res.redirect('/');
         }
         let cur_user_token=await ResetPassToken.findOne({
             accessToken:req.params.token
@@ -174,7 +174,7 @@ module.exports.finalVerification=async function(req,res){
     try{
         // if user is already signed in no need to proceed further
         if(req.isAuthenticated()){
-            return res.redirect('/users/profile/');
+            return res.redirect('/');
         }
         let cur_user_token=await EnableAccessToken.findOne({
             accessToken:req.params.token
@@ -201,7 +201,7 @@ module.exports.finalVerification=async function(req,res){
 module.exports.forgotPass=function(req,res){
     // if user is already signed in no need to show forgot password page
     if(req.isAuthenticated()){
-        return res.redirect('/users/profile/');
+        return res.redirect('/');
     }
     return res.render('forgot_password',{
         title:"fyn | Forgot Password"
@@ -213,7 +213,7 @@ module.exports.reset_pass=async function(req,res){
     try{
         // if user is already signed in no need to proceed further
         if(req.isAuthenticated()){
-            return res.redirect('/users/profile/');
+            return res.redirect('/');
         }
         //lllllllllllllhere leftt
         let cur_user=await User.findOne({
