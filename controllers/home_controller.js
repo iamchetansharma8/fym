@@ -86,7 +86,7 @@ module.exports.home=function(req,res){
 
 module.exports.homeChat=async function(req,res){
     try{
-        console.log('jj',req.body.myData);
+        console.log('jj',req.body);
         let user=await User.findOne({email:req.body.myData.email});
         console.log('profile**id',req.body.myData.profile_id);
         if(req.body.myData.profile_id!=undefined){
