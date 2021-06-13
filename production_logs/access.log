@@ -2357,3 +2357,5 @@
 ::1 - - [13/Jun/2021:06:57:10 +0000] "GET /post/all_posts HTTP/1.1" 200 5301 "http://localhost:8000/users/sign_in" "Mozilla/5.0 (Linux; Android 6.0.1; Moto G (4)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.101 Mobile Safari/537.36"
 ::1 - - [13/Jun/2021:06:57:15 +0000] "GET /users/forgot_password HTTP/1.1" 200 5387 "http://localhost:8000/post/all_posts" "Mozilla/5.0 (Linux; Android 6.0.1; Moto G (4)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.101 Mobile Safari/537.36"
 ::1 - - [13/Jun/2021:06:57:21 +0000] "GET / HTTP/1.1" 304 - "http://localhost:8000/users/forgot_password" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.101 Safari/537.36"
+::1 - - [13/Jun/2021:07:07:39 +0000] "GET / HTTP/1.1" 304 - "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.101 Safari/537.36"
+::1 - - [13/Jun/2021:07:07:44 +0000] "GET /users/sign_in HTTP/1.1" 200 5368 "http://localhost:8000/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.101 Safari/537.36"
