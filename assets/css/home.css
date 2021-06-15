@@ -7,9 +7,13 @@
 }
 .home-user-details-img{
     padding: 1rem;
+    width: 80px;
+    height: 80px;
 }
 .home-user-details-img img{
     border-radius: 50%;
+    width: 80px;
+    height: 80px;
 }
 .user-ind-details-name{
     padding-top: 1rem;
@@ -216,5 +220,13 @@
         width: 100vw;
         margin-bottom: 8rem;
         margin-top: 8rem;
+    }
+    .home-user-details-img{
+        width: 120px;
+        height: 120px;
+    }
+    .home-user-details-img img{
+        width: 120px;
+        height: 120px;
     }
 }

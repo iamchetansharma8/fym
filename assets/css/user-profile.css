@@ -73,12 +73,17 @@
       border: none;
       font-size: 1.2rem;
   }
+  #profile-page-image img{
+      height: 180px;
+      width: 180px;
+  }
   @media(max-width: 1000px){
     #profile-page-div{
         width: 100vw;
     }
     #profile-page-image img{
         width: 400px;
+        height: 400px;
     }
     .follow-unfollow{
         font-size: 3.2rem;
