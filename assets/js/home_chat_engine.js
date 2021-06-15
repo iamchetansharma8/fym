@@ -3,7 +3,7 @@ class ChatEngine{
         this.chatBox=$(`#${chatBoxId}`);
         this.userEmail=userEmail;
         // here this connect fires an event connection which is detected in server side
-        this.socket=io.connect("http://3.86.237.179:5000");
+        this.socket=io.connect("http://fymapp.tech:5000");
         if(this.userEmail){
             this.connectionHandler();
         }

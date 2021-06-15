@@ -4,7 +4,7 @@ module.exports.chatSockets=function(socketServer){
         // need to explicitly define cors with port of http server(in case of localhost)
         // or https://example.com
         cors:{
-            origin: "http://fymapp.tech/",
+            origin: "http://fymapp.tech",
             methods: ["GET", "POST"]
         }
     });
