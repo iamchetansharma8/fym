@@ -65,7 +65,7 @@ module.exports.signUp=function(req,res){
         return res.redirect('/');
     }
     return res.render('user_sign_up',{
-        title:"fyn | Sign Up"
+        title:"fym | Sign Up"
     })
 }
 
@@ -76,7 +76,7 @@ module.exports.signIn=function(req,res){
         return res.redirect('/users/profile/req.user.id');
     }
     return res.render('user_sign_in',{
-        title:"fyn | Sign In"
+        title:"fym | Sign In"
     })
 }
 
@@ -98,7 +98,7 @@ module.exports.resetPasswordPage=async function(req,res){
         }
         cur_user_token = await cur_user_token.populate('user', 'name email verified').execPopulate();
         res.render('reset_pass',{
-            title:"fyn | Reset Password",
+            title:"fym | Reset Password",
             user_of_token:cur_user_token.user,
             token:req.params.token
         });
@@ -126,7 +126,7 @@ module.exports.verifyEmailPage=async function(req,res){
         }
         cur_user_token = await cur_user_token.populate('user', 'name email verified').execPopulate();
         res.render('verify_email_page',{
-            title:"fyn | Verify Account",
+            title:"fym | Verify Account",
             user_of_token:cur_user_token.user,
             token:req.params.token
         });
@@ -204,7 +204,7 @@ module.exports.forgotPass=function(req,res){
         return res.redirect('/');
     }
     return res.render('forgot_password',{
-        title:"fyn | Forgot Password"
+        title:"fym | Forgot Password"
     })
 }
 
@@ -268,7 +268,7 @@ module.exports.create=async function(req,res){
             req.flash('success','Verification mail sent, check your email and verify your account');
             console.log('verification mail sent');
             return res.render('verify_email_info',{
-                title:"fyn | Verify"
+                title:"fym | Verify"
             });
         }
         else{
