@@ -33,10 +33,19 @@ class ChatEngine{
         // firing an event along with message when clicked on submit present in frontend
         $('#send-home-msg').click(function(){
             let msg=$('.home-chat-input').val();
+            //time fix
+            let today = new Date();
+            let hour=today.getHours();
+            let min=today.getMinutes();
+            if(hour<10){hour="0"+hour};
+            if(min<10){min="0"+min};
+            let time1 = hour + ":" + min;
+            // time fix
             let allData={
                 msg:msg,
                 email:self.userEmail,
-                chatroom:'fymroom'
+                chatroom:'fymroom',
+                timeCur:time1
             }
             if(msg!=''){
                 //start

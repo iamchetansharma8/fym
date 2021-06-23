@@ -16,8 +16,9 @@
                             <%if(m.email==user.email){%>
                                 <li class="self-msg">
                                     <span><%=m.message%></span>
+                                    <sub><%=m.curTime%></sub>
                                     <!-- <sub><%=m.email%></sub> -->
-                                    <sub><%=m.createdAt.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })%></sub>
+                                    <!-- <sub><%=m.createdAt.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })%></sub> -->
                                 </li>
                             <%}else{%>
                                 <li class="other-msg">
@@ -30,7 +31,8 @@
                                         </div>
                                         <div class="other-msg-content">
                                             <%=m.message%>
-                                            <sub><%=m.createdAt.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })%></sub>
+                                            <sub><%=m.curTime%></sub>
+                                            <!-- <sub><%=m.createdAt.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })%></sub> -->
                                         </div>
                                     </div>
                                     <!-- <span><%=m.message%></span>

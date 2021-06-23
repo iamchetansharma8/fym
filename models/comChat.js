@@ -7,6 +7,10 @@ const comChatSchema=new mongoose.Schema({
     email:{
         type: String,
         required :true
+    },
+    curTime:{
+        type: String,
+        required: true
     }
     // room:{
     //     type:mongoose.Schema.ObjectId,

@@ -33,14 +33,16 @@
                             <%if(m.email==user.email){%>
                                 <li class="self-msg1">
                                     <span><%=m.message%></span>
+                                    <sub><%=m.curTime%></sub>
                                     <!-- <sub><%=m.createdAt%></sub> -->
-                                    <sub><%=m.createdAt.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })%></sub>
+                                    <!-- <sub><%=m.createdAt.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })%></sub> -->
                                     <!-- <sub><%=m.email%></sub> -->
                                 </li>
                             <%}else{%>
                                 <li class="other-msg1">
                                     <span><%=m.message%></span>
-                                    <sub><%=m.createdAt.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })%></sub>
+                                    <sub><%=m.curTime%></sub>
+                                    <!-- <sub><%=m.createdAt.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })%></sub> -->
                                     <!-- <sub><%=m.email%></sub> -->
                                 </li>
                             <%}%>

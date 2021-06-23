@@ -34,12 +34,21 @@ class ChatEngineUser{
 
         // firing an event along with message when clicked on submit present in frontend
         $('#send-user-msg').click(function(){
+            //time fix
+            let today = new Date();
+            let hour=today.getHours();
+            let min=today.getMinutes();
+            if(hour<10){hour="0"+hour};
+            if(min<10){min="0"+min};
+            let time1 = hour + ":" + min;
+            // time fix
             let msg=$('.user-chat-input').val();
             let allData={
                 msg:msg,
                 email:self.userEmail,
                 chatroom:self.customBox,
-                profile_id:self.profileId
+                profile_id:self.profileId,
+                timeCur:time1
             }
             if(msg!=''){
                 //start

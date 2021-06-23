@@ -115,7 +115,7 @@ module.exports.homeChat=async function(req,res){
                 name:req.body.myData.chatroom,
             });
         }
-        let curChat=await ComChat.create({room:room,message:req.body.myData.msg,email:req.body.myData.email});
+        let curChat=await ComChat.create({room:room,message:req.body.myData.msg,email:req.body.myData.email,curTime:req.body.myData.timeCur});
         console.log(curChat,"pp")
         console.log('#er',user.email)
         let yes=false;
