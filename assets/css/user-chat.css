@@ -20,6 +20,10 @@
     color: #ffffff;
     font-family: sans-serif;
 } */
+.chat-user-img{
+    width: 30px;
+    height: 30px;
+}
 .user-chats{
     display: flex;
     flex-direction: column;
