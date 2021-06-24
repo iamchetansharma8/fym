@@ -94,6 +94,9 @@
     color: white;
     font-family: sans-serif;
 }
+.liked{
+    color: chocolate;
+}
 
 @media(max-width: 1000px){
     .post-main-head{

@@ -23,7 +23,17 @@
             <div>
                 <% if(locals.user){%>
                     <form action="/likes/toggle/?id=<%=cur_post._id%>&type=Post" method="POST">
-                        <button class="full-post-head-btns hover-pointer" type="submit"><%=cur_post.likes.length%> <i class="far fa-thumbs-up"></i></button>
+                        <%bool see=false%>
+                        <%for(like of cur_post.likes){%>
+                            <% if(locals.user==like.user){%>
+                                <%see=true;%>
+                                <button class="full-post-head-btns hover-pointer liked" type="submit"><%=cur_post.likes.length%> <i class="far fa-thumbs-up"></i></button>
+                                <%break;%>
+                            <%}%>
+                        <%}%>
+                        <%if(see==false){%>
+                            <button class="full-post-head-btns hover-pointer" type="submit"><%=cur_post.likes.length%> <i class="far fa-thumbs-up"></i></button>
+                        <%}%>
                     </form>
                     <!-- <a class="toggle-like-button" href="/likes/toggle/?id=<%=cur_post._id%>&type=Post"> -->
                         <!-- <%=cur_post.likes.length%>Likes -->
