@@ -23,7 +23,7 @@
             <div>
                 <% if(locals.user){%>
                     <form action="/likes/toggle/?id=<%=cur_post._id%>&type=Post" method="POST">
-                        <%bool see=false%>
+                        <%var see=false%>
                         <%for(like of cur_post.likes){%>
                             <% if(locals.user==like.user){%>
                                 <%see=true;%>
