@@ -25,6 +25,8 @@
                     <form action="/likes/toggle/?id=<%=cur_post._id%>&type=Post" method="POST">
                         <%var see=false%>
                         <%for(like of cur_post.likes){%>
+                            <h3>like.user: <%=like.user%></h3>
+                            <h3>locals.user: <%=locals.user%></h3>
                             <% if(locals.user==like.user){%>
                                 <%see=true;%>
                                 <button class="full-post-head-btns hover-pointer liked" type="submit"><%=cur_post.likes.length%> <i class="far fa-thumbs-up"></i></button>
