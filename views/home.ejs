@@ -210,10 +210,12 @@
         new ChatEngine('home-chat-box','<%=locals.user.email%>');
     </script>
     
-    <script>
-        if(searched){
-            $('#all-users-list').scrollTop($('#all-users-list')[0].scrollHeight);
-        }
-    </script>
-    
 <%}%>
+<script>
+    if(searched){
+        console.log('searched');
+        $('#all-users-list').scrollTop($('#all-users-list')[0].scrollHeight);
+    }else{
+        console.log('not searched');
+    }
+</script>
