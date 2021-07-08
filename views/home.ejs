@@ -211,7 +211,9 @@
     </script>
     
     <script>
-        console.log('somethong');
+        if(searched){
+            $('#all-users-list').scrollTop($('#all-users-list')[0].scrollHeight);
+        }
     </script>
     
 <%}%>
