@@ -214,7 +214,7 @@
     <%if(searched){%>
         <script>
         console.log('searched');
-        $('#all-users-list').scrollTop($('#all-users-list')[0].scrollHeight);
+        $('body').scrollTop($('#all-users-list')[0].offsetTop);
         </script>
     <%}else{%>
         <script>
