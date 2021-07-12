@@ -21,7 +21,7 @@ git clone "https://github.com/iamchetansharma8/fym.git"
 1. Backend using node.js, express.js and mongoDB.
 2. Front end using ejs, css and javascript.
 3. Chats using **WebSocket**.
-4. Mails are sent using **nodemailer**.
+4. Mails are sent using **nodemailer**, **kue** and **redis** are used to implement delayed jobs.
 5. Authentication using **passport-local**, **Google OAuth 2.0** and **passport-jwt** strategies.
 6. Profile photo upload using **multer**.
 7. **Gulpjs** is used to minify css,images and javascript.
