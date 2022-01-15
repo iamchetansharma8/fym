@@ -1,3 +1,4 @@
+<img width="1440" alt="Screenshot 2022-01-16 at 00 08 25" src="https://user-images.githubusercontent.com/54721715/149633885-77f6d826-2f17-48f3-8ae4-972abc5850b8.png">
 # FYM (Find Your Mentor)
 It is a fullstack web application made with **MVC** architecture with the idea to connect techies.
 It is deployed on **AWS**. You can check it [here](https://www.fymapp.tech).
