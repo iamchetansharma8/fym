@@ -1,4 +1,3 @@
-<img width="1440" alt="Screenshot 2022-01-16 at 00 08 25" src="https://user-images.githubusercontent.com/54721715/149633885-77f6d826-2f17-48f3-8ae4-972abc5850b8.png">
 # FYM (Find Your Mentor)
 It is a fullstack web application made with **MVC** architecture with the idea to connect techies.
 It is deployed on **AWS**. You can check it [here](https://www.fymapp.tech).
@@ -56,3 +55,4 @@ git clone "https://github.com/iamchetansharma8/fym.git"
 <img width="1440" alt="Screenshot 2022-01-15 at 23 55 36" src="https://user-images.githubusercontent.com/54721715/149633668-cdfe54a2-f7a0-4699-8949-ddc013731363.png">
 <img width="1440" alt="Screenshot 2022-01-15 at 23 55 57" src="https://user-images.githubusercontent.com/54721715/149633688-d7cea4ae-6580-459a-92b6-5be4975f4a67.png">
 <img width="1440" alt="Screenshot 2022-01-15 at 23 56 31" src="https://user-images.githubusercontent.com/54721715/149633697-5b736cac-ee37-4937-868c-e24d0aaa36cf.png">
+<img width="1440" alt="Screenshot 2022-01-16 at 00 08 25" src="https://user-images.githubusercontent.com/54721715/149633885-77f6d826-2f17-48f3-8ae4-972abc5850b8.png">
